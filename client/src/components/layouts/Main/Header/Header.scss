@@ -1,0 +1,17 @@
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    ul {
+        width: 165px;
+        display: flex;
+        list-style: none;
+        justify-content: space-between;
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+    }
+}
