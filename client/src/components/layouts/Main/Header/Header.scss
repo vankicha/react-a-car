@@ -1,17 +1,48 @@
-.header-wrapper {
+header {
+    background: #c82333;
     display: flex;
     justify-content: space-between;
     align-items: center;
 
-    ul {
-        width: 165px;
+    .logged-links {
+        padding-left: 10px;
+        margin: 0px;
+        width: 160px;
         display: flex;
         list-style: none;
         justify-content: space-between;
+    }
 
-        a {
-            text-decoration: none;
-            color: inherit;
+    .guest-links {
+        margin: 0px 0px 0px auto;
+        width: 160px;
+        display: flex;
+        list-style: none;
+        justify-content: space-between;
+    }
+
+    .navbar a {
+        font-family: 'Roboto';
+        text-decoration: none;
+        color: white;
+
+        &:hover {
+            color: rgb(253, 211, 218);
+        }
+    }
+
+    button {
+        font-family: 'Roboto';
+        margin: 0px 0px 0px auto;
+        padding: 5px 10px;
+        border: 1px solid #c82333;
+        border-radius: 4px;
+        background-color: white;
+        color: #c82333;
+
+        &:hover {
+            background-color: rgb(255, 0, 64);
+            color: white;
         }
     }
 }
