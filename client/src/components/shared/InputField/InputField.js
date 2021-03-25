@@ -3,7 +3,7 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import FormControl from '@material-ui/core/FormControl';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import { makeStyles, withTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
 import './InputField.scss';
 
@@ -31,6 +31,9 @@ const InputField = ({
     id,
     adorment,
     helperText,
+    name,
+    value,
+    onChange,
 }) => {
     const classes = useStyles();
 
@@ -54,6 +57,9 @@ const InputField = ({
                         </InputAdornment>
                     )
                 }
+                name={name}
+                value={value}
+                onChange={onChange}
             />
 
             {helperText && (

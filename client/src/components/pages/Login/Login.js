@@ -7,7 +7,6 @@ const Login = () => {
         <Main>
             <div className='login-form-wrapper'>
                 <h1>Login</h1>
-
                 <LoginForm />
             </div>
         </Main>

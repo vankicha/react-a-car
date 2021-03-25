@@ -1,28 +1,73 @@
 import InputField from '../../../shared/InputField';
 import Button from '../../../shared/Button';
-
+import useForm from '../../../../hooks/useForm';
 import './UserForm.scss';
 
 const UserForm = () => {
+    const [values, setValues] = useForm({
+        email: '',
+        firstName: '',
+        lastName: '',
+        password: '',
+        confirmPassword: '',
+        balance: 0,
+    });
+
+    const handleRegisterUser = (e) => {
+        e.preventDefault();
+        console.log(values);
+    };
+
     return (
         <div className='user-form-wrapper'>
-            <form>
+            <form onSubmit={handleRegisterUser}>
                 <h3>User</h3>
-                <InputField labelWidth={50} type='email' id='email'>
+                <InputField
+                    value={values.email}
+                    name='email'
+                    onChange={setValues}
+                    labelWidth={50}
+                    type='email'
+                    id='email'
+                >
                     Email
                 </InputField>
-                <InputField labelWidth={80} type='text' id='firstName'>
+                <InputField
+                    value={values.firstName}
+                    name='firstName'
+                    onChange={setValues}
+                    labelWidth={80}
+                    type='text'
+                    id='firstName'
+                >
                     First Name
                 </InputField>
 
-                <InputField labelWidth={80} type='text' id='lastName'>
+                <InputField
+                    value={values.lastName}
+                    name='lastName'
+                    onChange={setValues}
+                    labelWidth={80}
+                    type='text'
+                    id='lastName'
+                >
                     Last Name
                 </InputField>
 
-                <InputField labelWidth={70} type='password' id='password'>
+                <InputField
+                    name='password'
+                    value={values.password}
+                    onChange={setValues}
+                    labelWidth={70}
+                    type='password'
+                    id='password'
+                >
                     Password
                 </InputField>
                 <InputField
+                    name='confirmPassword'
+                    value={values.confirmPassword}
+                    onChange={setValues}
                     labelWidth={140}
                     type='password'
                     id='confirm-password'
@@ -31,6 +76,9 @@ const UserForm = () => {
                 </InputField>
 
                 <InputField
+                    name='balance'
+                    value={values.balance}
+                    onChange={setValues}
                     labelWidth={105}
                     type='number'
                     id='amount'
