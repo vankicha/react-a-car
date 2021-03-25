@@ -1,4 +1,4 @@
-.company-form-wrapper {
+.login-form {
     width: 508px;
     border: 1px solid white;
     border-radius: 4px;
@@ -9,6 +9,10 @@
         font: italic normal 20px/32px 'Roboto';
         text-align: center;
         color: white;
+    }
+
+    form {
+        padding-top: 48px;
     }
 
     .button-white {

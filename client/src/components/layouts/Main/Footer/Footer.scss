@@ -1,0 +1,14 @@
+.footer-wrapper {
+    background: #c82333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #c82333;
+    border-radius: 4px;
+    padding: 9px;
+
+    span {
+        font-family: 'Roboto';
+        color: white;
+    }
+}

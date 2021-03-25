@@ -6,10 +6,10 @@ import './Register.scss';
 const Register = () => {
     return (
         <Main>
-            <div className='form-wrapper'>
+            <div className='register-forms-wrapper'>
                 <h1>Register</h1>
                 <p className='title-helper'>as</p>
-                <div className='form-content'>
+                <div className='forms-content'>
                     <UserForm />
                     <CompanyForm />
                 </div>
