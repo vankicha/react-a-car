@@ -6,12 +6,6 @@
         display: flex;
     }
 
-    .button-white {
-        margin: 10px auto;
-        width: 120px;
-        height: 40px;
-    }
-
     .title-helper {
         font: italic normal 20px/64px 'Roboto';
         margin: 0;
@@ -25,5 +19,37 @@
         text-align: center;
         color: #c82333;
         margin: 0;
+    }
+
+    form {
+        width: 300px;
+        margin: auto;
+    }
+
+    h3 {
+        font: italic normal 20px/32px 'Roboto';
+        text-align: center;
+        color: #c82333;
+    }
+
+    input {
+        font: normal normal 14px/32px 'Roboto';
+        color: #c82333;
+    }
+
+    .MuiFormLabel-root {
+        color: #c82333;
+    }
+
+    .MuiFormLabel-root.Mui-focused {
+        color: #c82333;
+    }
+
+    .MuiOutlinedInput-input:focus {
+        color: #c82333;
+    }
+
+    .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+        border-color: #c82333;
     }
 }

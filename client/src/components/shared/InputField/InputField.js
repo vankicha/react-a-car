@@ -3,8 +3,9 @@ import OutlinedInput from '@material-ui/core/OutlinedInput';
 import FormControl from '@material-ui/core/FormControl';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
+import clsx from 'clsx';
+import './InputField.scss';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -12,7 +13,8 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: 'wrap',
     },
     margin: {
-        margin: theme.spacing(1),
+        marginTop: '8px',
+        marginBottom: '8px',
     },
     withoutLabel: {
         marginTop: theme.spacing(3),

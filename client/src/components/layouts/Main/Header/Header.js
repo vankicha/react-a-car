@@ -17,7 +17,7 @@ const Header = () => {
                 <Link to='/login'>Login</Link>
                 <Link to='/register'>Register</Link>
             </ul>
-            <Button className='button-white'>LOGOUT</Button>
+            {/* <Button className='button-white'>LOGOUT</Button> */}
         </header>
     );
 };

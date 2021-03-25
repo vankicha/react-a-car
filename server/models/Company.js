@@ -18,9 +18,6 @@ const companySchema = new mongoose.Schema({
     photoUrl: {
         type: String,
     },
-    description: {
-        type: String,
-    },
     providedCars: [
         {
             type: mongoose.Types.ObjectId,

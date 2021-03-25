@@ -1,5 +1,6 @@
 import Main from '../../layouts/Main';
 import UserForm from './UserForm';
+import CompanyForm from './CompanyForm';
 import './Register.scss';
 
 const Register = () => {
@@ -10,7 +11,7 @@ const Register = () => {
                 <p className='title-helper'>as</p>
                 <div className='form-content'>
                     <UserForm />
-                    <UserForm />
+                    <CompanyForm />
                 </div>
             </div>
         </Main>
