@@ -1,11 +1,13 @@
 import InputField from '../../../shared/InputField';
+import Button from '../../../shared/Button';
+
 import './UserForm.scss';
 
 const UserForm = () => {
     return (
         <div className='user-form-wrapper'>
             <form>
-                <h3>as User</h3>
+                <h3>User</h3>
                 <InputField labelWidth={50} type='email' id='email'>
                     Email
                 </InputField>
@@ -28,9 +30,16 @@ const UserForm = () => {
                     Confirm Password
                 </InputField>
 
-                <InputField labelWidth={60} type='number' id='amount'>
-                    Amount
+                <InputField
+                    labelWidth={105}
+                    type='number'
+                    id='amount'
+                    adorment={'$'}
+                    helperText={'*Not neccessary'}
+                >
+                    Initial Balance
                 </InputField>
+                <Button className='button-white'>REGISTER</Button>
             </form>
         </div>
     );

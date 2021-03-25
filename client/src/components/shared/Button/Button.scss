@@ -1,0 +1,23 @@
+.button-white {
+    display: flex;
+    margin: 0px 30px 0px auto;
+    padding: 5px 10px;
+    border: 1px solid #c82333;
+    border-radius: 4px;
+    background-color: white;
+    cursor: pointer;
+
+    span {
+        margin: auto;
+        font-family: 'Roboto';
+        color: #c82333;
+    }
+
+    &:hover {
+        background-color: rgb(255, 0, 64);
+
+        span {
+            color: white;
+        }
+    }
+}

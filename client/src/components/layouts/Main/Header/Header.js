@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ReactComponent as CarLogo } from './assets/car-logo.svg';
+
+import Button from '../../../shared/Button';
 import './Header.scss';
 
 const Header = () => {
@@ -15,7 +17,7 @@ const Header = () => {
                 <Link to='/login'>Login</Link>
                 <Link to='/register'>Register</Link>
             </ul>
-            {/* <button>LOGOUT</button> */}
+            <Button className='button-white'>LOGOUT</Button>
         </header>
     );
 };

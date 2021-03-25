@@ -7,6 +7,7 @@ const Register = () => {
         <Main>
             <div className='form-wrapper'>
                 <h1>Register</h1>
+                <p className='title-helper'>as</p>
                 <div className='form-content'>
                     <UserForm />
                     <UserForm />
