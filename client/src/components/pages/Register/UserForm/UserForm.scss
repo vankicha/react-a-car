@@ -1,0 +1,28 @@
+.user-form-wrapper {
+    width: 450px;
+
+    form {
+        width: 300px;
+        margin: auto;
+    }
+
+    h3 {
+        text-align: center;
+    }
+
+    .MuiFormLabel-root {
+        color: #c82333;
+    }
+
+    .MuiFormLabel-root.Mui-focused {
+        color: #c82333;
+    }
+
+    .MuiOutlinedInput-input:focus {
+        color: #c82333;
+    }
+
+    .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+        border-color: #c82333;
+    }
+}

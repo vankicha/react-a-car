@@ -1,0 +1,14 @@
+.form-wrapper {
+    margin: auto;
+
+    .form-content {
+        display: flex;
+    }
+
+    h1 {
+        font: normal 700 32px/64px 'Roboto';
+        letter-spacing: -0.02em;
+        text-align: center;
+        color: #c82333;
+    }
+}

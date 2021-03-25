@@ -1,4 +1,11 @@
 .main-wrapper {
     margin: auto;
     width: 1440px;
+
+    .main-content {
+        display: flex;
+        width: 900px;
+        margin: auto;
+        padding-top: 50px;
+    }
 }
