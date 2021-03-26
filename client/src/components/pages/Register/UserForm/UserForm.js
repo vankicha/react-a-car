@@ -1,9 +1,11 @@
 import InputField from '../../../shared/InputField';
 import Button from '../../../shared/Button';
 import useForm from '../../../../hooks/useForm';
+import { connect } from 'react-redux';
+import { registerAsUser } from '../../../../actions/userActions';
 import './UserForm.scss';
 
-const UserForm = () => {
+const UserForm = ({ registerAsUser }) => {
     const [values, setValues] = useForm({
         email: '',
         firstName: '',
@@ -13,8 +15,9 @@ const UserForm = () => {
         balance: 0,
     });
 
-    const handleRegisterUser = (e) => {
+    const handleRegisterUser = async (e) => {
         e.preventDefault();
+        await registerAsUser({ ...values });
         console.log(values);
     };
 
@@ -87,10 +90,19 @@ const UserForm = () => {
                 >
                     Initial Balance
                 </InputField>
-                <Button className='button-white'>REGISTER</Button>
+                <Button
+                    className='button-white'
+                    handlerClick={handleRegisterUser}
+                >
+                    REGISTER
+                </Button>
             </form>
         </div>
     );
 };
 
-export default UserForm;
+const mapDispatchToProps = {
+    registerAsUser,
+};
+
+export default connect(null, mapDispatchToProps)(UserForm);

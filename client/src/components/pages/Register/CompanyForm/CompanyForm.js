@@ -2,9 +2,11 @@ import InputField from '../../../shared/InputField';
 import Button from '../../../shared/Button';
 import AlertBox from '../../../shared/AlertBox';
 import useForm from '../../../../hooks/useForm';
+import { connect } from 'react-redux';
+import { registerAsCompany } from '../../../../actions/userActions';
 import './CompanyForm.scss';
 
-const CompanyForm = () => {
+const CompanyForm = ({ registerAsCompany }) => {
     const [values, setValues] = useForm({
         email: '',
         companyName: '',
@@ -12,8 +14,9 @@ const CompanyForm = () => {
         confirmPassword: '',
     });
 
-    const handleRegisterCompany = (e) => {
+    const handleRegisterCompany = async (e) => {
         e.preventDefault();
+        await registerAsCompany({ ...values });
         console.log(values);
     };
 
@@ -71,4 +74,6 @@ const CompanyForm = () => {
     );
 };
 
-export default CompanyForm;
+const mapDispatchToProps = { registerAsCompany };
+
+export default connect(null, mapDispatchToProps)(CompanyForm);

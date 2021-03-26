@@ -12,3 +12,5 @@ const FIREBASE_CERTIFICATE = {
     client_x509_cert_url:
         'https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-3jexz%40react-a-car.iam.gserviceaccount.com',
 };
+
+module.exports = FIREBASE_CERTIFICATE;
