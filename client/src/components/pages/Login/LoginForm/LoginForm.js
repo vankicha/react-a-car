@@ -1,15 +1,19 @@
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import InputField from '../../../shared/InputField';
 import Button from '../../../shared/Button';
 import useForm from '../../../../hooks/useForm';
+import { login } from '../../../../actions/userActions';
 import './LoginForm.scss';
 
-const LoginForm = () => {
+const LoginForm = ({ login }) => {
     const [values, setValues] = useForm({ email: '', password: '' });
+    const history = useHistory();
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-
-        console.log(values);
+        await login(values.email, values.password);
+        history.push('/');
     };
 
     return (
@@ -35,10 +39,16 @@ const LoginForm = () => {
                 >
                     Password
                 </InputField>
-                <Button className='button-white'>LOGIN</Button>
+                <Button className='button-white' handlerClick={handleLogin}>
+                    LOGIN
+                </Button>
             </form>
         </div>
     );
 };
 
-export default LoginForm;
+const mapDispatchToProps = {
+    login,
+};
+
+export default connect(null, mapDispatchToProps)(LoginForm);

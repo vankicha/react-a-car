@@ -1,11 +1,12 @@
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import InputField from '../../../shared/InputField';
 import Button from '../../../shared/Button';
 import useForm from '../../../../hooks/useForm';
-import { connect } from 'react-redux';
-import { registerAsUser } from '../../../../actions/userActions';
+import { registerAsUser, login } from '../../../../actions/userActions';
 import './UserForm.scss';
 
-const UserForm = ({ registerAsUser }) => {
+const UserForm = ({ registerAsUser, login }) => {
     const [values, setValues] = useForm({
         email: '',
         firstName: '',
@@ -14,11 +15,13 @@ const UserForm = ({ registerAsUser }) => {
         confirmPassword: '',
         balance: 0,
     });
+    const history = useHistory();
 
     const handleRegisterUser = async (e) => {
         e.preventDefault();
         await registerAsUser({ ...values });
-        console.log(values);
+        await login(values.email, values.password);
+        history.push('/');
     };
 
     return (
@@ -103,6 +106,7 @@ const UserForm = ({ registerAsUser }) => {
 
 const mapDispatchToProps = {
     registerAsUser,
+    login,
 };
 
 export default connect(null, mapDispatchToProps)(UserForm);

@@ -23,8 +23,6 @@ const registerCompany = async (email, companyName, password) => {
     await admin
         .auth()
         .setCustomUserClaims(company._id.toString(), { company: true });
-
-    return { _id: company._id, fullName: company.name, email: company.email };
 };
 
 const registerUser = async (email, firstName, lastName, password, balance) => {
@@ -46,13 +44,6 @@ const registerUser = async (email, firstName, lastName, password, balance) => {
     });
 
     await admin.auth().setCustomUserClaims(user._id.toString(), { user: true });
-
-    return {
-        _id: user._id,
-        fullName: `${user.firstName} ${user.lastName}`,
-        email: user.email,
-        balance: user.balance,
-    };
 };
 
 module.exports = {

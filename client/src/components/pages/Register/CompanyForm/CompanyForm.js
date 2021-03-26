@@ -1,23 +1,26 @@
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { registerAsCompany, login } from '../../../../actions/userActions';
 import InputField from '../../../shared/InputField';
 import Button from '../../../shared/Button';
 import AlertBox from '../../../shared/AlertBox';
 import useForm from '../../../../hooks/useForm';
-import { connect } from 'react-redux';
-import { registerAsCompany } from '../../../../actions/userActions';
 import './CompanyForm.scss';
 
-const CompanyForm = ({ registerAsCompany }) => {
+const CompanyForm = ({ registerAsCompany, login }) => {
     const [values, setValues] = useForm({
         email: '',
         companyName: '',
         password: '',
         confirmPassword: '',
     });
+    const history = useHistory();
 
     const handleRegisterCompany = async (e) => {
         e.preventDefault();
         await registerAsCompany({ ...values });
-        console.log(values);
+        await login(values.email, values.password);
+        history.push('/');
     };
 
     return (
@@ -74,6 +77,6 @@ const CompanyForm = ({ registerAsCompany }) => {
     );
 };
 
-const mapDispatchToProps = { registerAsCompany };
+const mapDispatchToProps = { registerAsCompany, login };
 
 export default connect(null, mapDispatchToProps)(CompanyForm);

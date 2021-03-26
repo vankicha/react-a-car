@@ -4,14 +4,12 @@ const authService = require('../services/authService');
 const authController = Router();
 
 authController.post('/register', async (req, res) => {
-    let result = {};
-
     if (req.query.as === 'company') {
         const { email, companyName, password } = req.body;
-        result = await authService.registerCompany(email, companyName, password);
+        await authService.registerCompany(email, companyName, password);
     } else if (req.query.as === 'user') {
         const { email, firstName, lastName, password, balance } = req.body;
-        result = await authService.registerUser(
+        await authService.registerUser(
             email,
             firstName,
             lastName,
@@ -19,8 +17,8 @@ authController.post('/register', async (req, res) => {
             Number(balance)
         );
     }
-    
-    res.status(201).json(result);
+
+    res.status(201).end();
 });
 
 module.exports = authController;

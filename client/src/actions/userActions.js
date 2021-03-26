@@ -1,8 +1,9 @@
-import { LOGIN, REGISTER } from '../actionTypes/userTypes';
+import { SET_CREDENTIALS } from '../actionTypes/userTypes';
+import { auth } from '../utils/firebase';
 import authService from '../services/authService';
 
-const registerSuccess = (userInfo) => ({
-    type: REGISTER,
+const setCredentialsSuccess = (userInfo) => ({
+    type: SET_CREDENTIALS,
     payload: userInfo,
 });
 
@@ -14,16 +15,13 @@ export const registerAsUser = ({
     balance,
 }) => async (dispatch) => {
     try {
-        const response = await authService.registerAsUser(
+        await authService.registerAsUser(
             email,
             firstName,
             lastName,
             password,
             balance
         );
-        const data = await response.json();
-        console.log(data);
-        dispatch(registerSuccess(data));
     } catch (error) {
         console.log(error);
     }
@@ -33,15 +31,34 @@ export const registerAsCompany = ({ email, companyName, password }) => async (
     dispatch
 ) => {
     try {
-        const response = await authService.registerAsCompany(
-            email,
-            companyName,
-            password
-        );
-        const data = await response.json();
-
-        dispatch(registerSuccess(data));
+        await authService.registerAsCompany(email, companyName, password);
     } catch (error) {
         console.log(error);
     }
+};
+
+export const login = (email, password) => async (dispatch) => {
+    try {
+        await auth.signInWithEmailAndPassword(email, password);
+    } catch (error) {
+        console.log(error);
+    }
+};
+
+export const verifyAuth = () => async (dispatch) => {
+    auth.onIdTokenChanged(async (user) => {
+        if (user) {
+            const email = user.email;
+            const token = await user.getIdToken();
+            const tokenResult = await user.getIdTokenResult();
+            console.log(tokenResult);
+
+            dispatch(setCredentialsSuccess({ email, token }));
+        }
+    });
+};
+
+export const logout = () => async (dispatch) => {
+    await auth.signOut();
+    dispatch({ type: 'LOGOUT' });
 };

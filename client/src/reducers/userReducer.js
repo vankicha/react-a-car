@@ -1,20 +1,16 @@
-import { LOGIN, REGISTER } from '../actionTypes/userTypes';
+import { SET_CREDENTIALS } from '../actionTypes/userTypes';
 
 const initialState = {
     _id: '',
     email: '',
     isLogged: false,
-    firstName: '',
-    lastName: '',
+    name: '',
     token: '',
 };
 
 const user = (state = initialState, action) => {
-    console.log(action.payload);
-
     switch (action.type) {
-        case REGISTER:
-        case LOGIN:
+        case SET_CREDENTIALS:
             return {
                 ...state,
                 ...action.payload,
@@ -26,3 +22,5 @@ const user = (state = initialState, action) => {
 };
 
 export default user;
+
+export const getIsLogged = (state) => state.user.isLogged;

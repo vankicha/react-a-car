@@ -15,6 +15,20 @@
         padding-top: 48px;
     }
 
+    input {
+        font: normal normal 14px/32px 'Roboto';
+        color: white;
+
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus {
+            box-shadow: 0 0 0px 1000px #c82333 inset;
+            -webkit-box-shadow: 0 0 0px 1000px #c82333 inset;
+            -webkit-text-fill-color: white;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+    }
+
     .button-white {
         margin: 50px auto 10px auto;
         width: 120px;
