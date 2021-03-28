@@ -1,4 +1,4 @@
-import { SET_CREDENTIALS, PROVIDE_CAR } from '../actionTypes/userTypes';
+import { SET_CREDENTIALS, LOGOUT, PROVIDE_CAR } from '../actionTypes/userTypes';
 import { auth } from '../utils/firebase';
 import authService from '../services/authService';
 import offerService from '../services/offerService';
@@ -55,7 +55,7 @@ export const verifyAuth = () => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
     await auth.signOut();
-    dispatch({ type: 'LOGOUT' });
+    dispatch({ type: LOGOUT });
 };
 
 export const provideCar = ({ brand, model, year, price, photoUrl }) => async (

@@ -1,4 +1,4 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { verifyAuth } from './actions/userActions';
@@ -17,7 +17,10 @@ function App({ verifyAuth }) {
         <BrowserRouter>
             <div className='App'>
                 <Switch>
-                    <Route exact path='/' component={Home} />
+                    <Route exact path='/'>
+                        <Redirect to='/offers' />
+                    </Route>
+                    <Route path='/offers' component={Home} />
                     <Route path='/register' component={Register} />
                     <Route path='/login' component={Login} />
                     <Route path='/provide' component={Provide} />

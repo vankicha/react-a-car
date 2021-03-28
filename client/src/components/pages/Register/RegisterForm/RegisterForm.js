@@ -21,7 +21,7 @@ const UserForm = ({ register, login }) => {
         e.preventDefault();
         await register({ ...values });
         await login(values.email, values.password);
-        history.push('/');
+        history.push('/offers');
     };
 
     return (

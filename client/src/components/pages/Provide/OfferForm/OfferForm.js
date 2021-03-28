@@ -18,7 +18,7 @@ const OfferForm = ({ provideCar, photoUrl, setPhotoUrl }) => {
     const handleProvide = async (e) => {
         e.preventDefault();
         await provideCar({ ...values, photoUrl });
-        history.push('/');
+        history.push('/offers');
     };
 
     return (

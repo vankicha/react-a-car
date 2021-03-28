@@ -11,7 +11,7 @@ const initalOfferState = {
 const offers = (state = [], action) => {
     switch (action.type) {
         case FETCH_OFFERS:
-            return action.payload;
+            return action.payload.map((x) => ({ ...initalOfferState, ...x }));
         default:
             return state;
     }

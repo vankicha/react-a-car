@@ -11,7 +11,7 @@ const Header = ({ isLogged, logout }) => {
 
     const handleLogout = async () => {
         await logout();
-        history.push('/');
+        history.push('/offers');
     };
 
     return (

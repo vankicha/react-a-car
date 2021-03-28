@@ -13,7 +13,7 @@ const LoginForm = ({ login }) => {
     const handleLogin = async (e) => {
         e.preventDefault();
         await login(values.email, values.password);
-        history.push('/');
+        history.push('/offers');
     };
 
     return (

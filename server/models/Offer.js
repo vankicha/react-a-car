@@ -25,8 +25,12 @@ const offerSchema = new mongoose.Schema({
         required: true,
     },
     lastRented: {
-        date: Date,
-        id: { type: mongoose.Types.ObjectId, ref: 'User' },
+        type: Date,
     },
 });
+
+offerSchema.virtual('isAvailable').get(function () {
+    return this.lastRented > new Date().getDate();
+});
+
 module.exports = mongoose.model('Offer', offerSchema);

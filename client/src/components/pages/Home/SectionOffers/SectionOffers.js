@@ -10,8 +10,6 @@ const SectionOffers = ({ offers, fetchOffers }) => {
         fetchOffers();
     }, [fetchOffers]);
 
-    console.log(offers);
-
     return (
         <div className='section-offers-wrapper'>
             {offers.map((x) => (

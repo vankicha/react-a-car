@@ -1,11 +1,10 @@
 import Main from '../../layouts/Main';
 import SectionOffers from './SectionOffers';
-import SectionSorting from './SectionSorting';
+import './Home.scss';
 
 const Home = () => {
     return (
         <Main>
-            <SectionSorting />
             <SectionOffers />
         </Main>
     );
