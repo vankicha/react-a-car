@@ -20,7 +20,12 @@ const Header = ({ isLogged, logout }) => {
             <Link to='/'>REACT A CAR</Link>
 
             <ul className='list-left-links'>
-                {isLogged && <Link to='/profile'>My Profile</Link>}
+                {isLogged && (
+                    <>
+                        <Link to='/profile'>My Profile</Link>
+                        <Link to='/provide'>Provide a car</Link>
+                    </>
+                )}
                 <Link to='/about'>About Us</Link>
             </ul>
 

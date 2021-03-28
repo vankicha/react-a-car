@@ -25,20 +25,22 @@ const userSchema = new mongoose.Schema({
     photoUrl: {
         type: String,
     },
-    providedCar: {
-        type: mongoose.Types.ObjectId,
-        ref: 'Car',
-    },
-    rentedCars: [
+    offers: [
         {
             type: mongoose.Types.ObjectId,
-            ref: 'Car',
+            ref: 'Offer',
+        },
+    ],
+    rented: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: 'Offer',
         },
     ],
     review: [
         {
             type: mongoose.Types.ObjectId,
-            ref: 'Car',
+            ref: 'Offer',
         },
     ],
 });

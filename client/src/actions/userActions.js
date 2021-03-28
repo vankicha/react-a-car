@@ -1,13 +1,19 @@
-import { SET_CREDENTIALS } from '../actionTypes/userTypes';
+import { SET_CREDENTIALS, PROVIDE_CAR } from '../actionTypes/userTypes';
 import { auth } from '../utils/firebase';
 import authService from '../services/authService';
+import offerService from '../services/offerService';
 
 const setCredentialsSuccess = (userInfo) => ({
     type: SET_CREDENTIALS,
     payload: userInfo,
 });
 
-export const registerAsUser = ({
+const provideCarSuccess = (offerId) => ({
+    type: PROVIDE_CAR,
+    payload: offerId,
+});
+
+export const register = ({
     email,
     firstName,
     lastName,
@@ -15,23 +21,13 @@ export const registerAsUser = ({
     balance,
 }) => async (dispatch) => {
     try {
-        await authService.registerAsUser(
+        await authService.register(
             email,
             firstName,
             lastName,
             password,
             balance
         );
-    } catch (error) {
-        console.log(error);
-    }
-};
-
-export const registerAsCompany = ({ email, companyName, password }) => async (
-    dispatch
-) => {
-    try {
-        await authService.registerAsCompany(email, companyName, password);
     } catch (error) {
         console.log(error);
     }
@@ -51,7 +47,6 @@ export const verifyAuth = () => async (dispatch) => {
             const email = user.email;
             const token = await user.getIdToken();
             const tokenResult = await user.getIdTokenResult();
-            console.log(tokenResult);
 
             dispatch(setCredentialsSuccess({ email, token }));
         }
@@ -61,4 +56,20 @@ export const verifyAuth = () => async (dispatch) => {
 export const logout = () => async (dispatch) => {
     await auth.signOut();
     dispatch({ type: 'LOGOUT' });
+};
+
+export const provideCar = ({ brand, model, year, price, photoUrl }) => async (
+    dispatch
+) => {
+    const response = await offerService.create(
+        brand,
+        model,
+        year,
+        price,
+        photoUrl
+    );
+
+    const data = await response.json();
+
+    dispatch(provideCarSuccess(data.offerId));
 };

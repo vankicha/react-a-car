@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
-const carSchema = new mongoose.Schema({
-    make: {
+const offerSchema = new mongoose.Schema({
+    brand: {
         type: String,
         required: true,
     },
@@ -9,12 +9,9 @@ const carSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    type: {
+    year: {
         type: String,
         required: true,
-    },
-    year: {
-        type: Number,
     },
     image: {
         type: String,
@@ -22,7 +19,6 @@ const carSchema = new mongoose.Schema({
     provider: {
         type: mongoose.Types.ObjectId,
         ref: 'User',
-        ref: 'Organization',
     },
     pricePerHour: {
         type: Number,
@@ -33,5 +29,4 @@ const carSchema = new mongoose.Schema({
         id: { type: mongoose.Types.ObjectId, ref: 'User' },
     },
 });
-
-module.exports = mongoose.model('Car', carSchema);
+module.exports = mongoose.model('Offer', offerSchema);

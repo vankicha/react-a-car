@@ -1,4 +1,4 @@
-import { SET_CREDENTIALS } from '../actionTypes/userTypes';
+import { SET_CREDENTIALS, PROVIDE_CAR } from '../actionTypes/userTypes';
 
 const initialState = {
     _id: '',
@@ -6,6 +6,7 @@ const initialState = {
     isLogged: false,
     name: '',
     token: '',
+    offers: [],
 };
 
 const user = (state = initialState, action) => {
@@ -16,6 +17,8 @@ const user = (state = initialState, action) => {
                 ...action.payload,
                 isLogged: true,
             };
+        case PROVIDE_CAR:
+            return { ...state, offers: [...state.offers, action.payload] };
         default:
             return state;
     }

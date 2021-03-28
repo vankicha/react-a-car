@@ -1,53 +1,51 @@
-.company-form-wrapper {
-    width: 508px;
-    border: 1px solid white;
-    border-radius: 4px;
-    padding-bottom: 20px;
-    background: #c82333;
+.user-form-wrapper {
+    width: 500px;
+    padding-bottom: 94px;
+
+    form {
+        width: 300px;
+        margin: auto;
+    }
 
     h3 {
         font: italic normal 20px/32px 'Roboto';
         text-align: center;
-        color: white;
+        color: #c82333;
     }
 
     input {
         font: normal normal 14px/32px 'Roboto';
-        color: white;
+        color: #c82333;
 
         &:-webkit-autofill,
         &:-webkit-autofill:hover,
         &:-webkit-autofill:focus {
-            box-shadow: 0 0 0px 1000px #c82333 inset;
-            -webkit-box-shadow: 0 0 0px 1000px #c82333 inset;
-            -webkit-text-fill-color: white;
+            box-shadow: 0 0 0px 1000px white inset;
+            -webkit-box-shadow: 0 0 0px 1000px white inset;
+            -webkit-text-fill-color: #c82333;
             transition: background-color 5000s ease-in-out 0s;
         }
     }
 
     .button-white {
-        margin: 50px auto 10px auto;
+        margin: 10px auto;
         width: 120px;
         height: 40px;
     }
 
     .MuiFormLabel-root {
-        color: white;
+        color: #c82333;
     }
 
     .MuiFormLabel-root.Mui-focused {
-        color: white;
+        color: #c82333;
     }
 
     .MuiOutlinedInput-input:focus {
-        color: white;
+        color: #c82333;
     }
 
     .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
-        border-color: white;
-    }
-
-    .MuiOutlinedInput-notchedOutline {
-        border-color: white;
+        border-color: #c82333;
     }
 }

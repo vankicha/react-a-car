@@ -5,6 +5,7 @@ import { verifyAuth } from './actions/userActions';
 import Home from './components/pages/Home';
 import Register from './components/pages/Register';
 import Login from './components/pages/Login';
+import Provide from './components/pages/Provide';
 import './App.scss';
 
 function App({ verifyAuth }) {
@@ -19,6 +20,7 @@ function App({ verifyAuth }) {
                     <Route exact path='/' component={Home} />
                     <Route path='/register' component={Register} />
                     <Route path='/login' component={Login} />
+                    <Route path='/provide' component={Provide} />
                 </Switch>
             </div>
         </BrowserRouter>

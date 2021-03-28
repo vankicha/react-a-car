@@ -1,31 +1,9 @@
 const User = require('../models/User');
-const Company = require('../models/Company');
 const bcrypt = require('bcrypt');
 const admin = require('firebase-admin');
 const config = require('../config/config');
 
-const registerCompany = async (email, companyName, password) => {
-    const salt = await bcrypt.genSalt(config.SALT_ROUNDS);
-    const hash = await bcrypt.hash(password, salt);
-
-    const company = await Company.create({
-        email,
-        name: companyName,
-        password: hash,
-    });
-
-    await admin.auth().createUser({
-        uid: company._id.toString(),
-        email,
-        password,
-    });
-
-    await admin
-        .auth()
-        .setCustomUserClaims(company._id.toString(), { company: true });
-};
-
-const registerUser = async (email, firstName, lastName, password, balance) => {
+const register = async (email, firstName, lastName, password, balance) => {
     const salt = await bcrypt.genSalt(config.SALT_ROUNDS);
     const hash = await bcrypt.hash(password, salt);
 
@@ -47,6 +25,5 @@ const registerUser = async (email, firstName, lastName, password, balance) => {
 };
 
 module.exports = {
-    registerCompany,
-    registerUser,
+    register,
 };

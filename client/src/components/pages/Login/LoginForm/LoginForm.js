@@ -39,9 +39,7 @@ const LoginForm = ({ login }) => {
                 >
                     Password
                 </InputField>
-                <Button className='button-white' handlerClick={handleLogin}>
-                    LOGIN
-                </Button>
+                <Button className='button-white'>LOGIN</Button>
             </form>
         </div>
     );

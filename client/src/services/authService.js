@@ -2,18 +2,12 @@ import { authApi } from './api';
 import requester from './requester';
 
 export default {
-    registerAsUser: (email, firstName, lastName, password, balance) =>
-        requester.post(authApi.registerAsUser(), {
+    register: (email, firstName, lastName, password, balance) =>
+        requester.post(authApi.register(), {
             email,
             firstName,
             lastName,
             password,
             balance,
-        }),
-    registerAsCompany: (email, companyName, password) =>
-        requester.post(authApi.registerAsCompany(), {
-            email,
-            companyName,
-            password,
         }),
 };

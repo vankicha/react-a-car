@@ -1,14 +1,16 @@
 import { HTTP } from '../constants';
+import { auth } from '../utils/firebase';
+import { getToken } from '../helpers/userHelper';
 
-const request = (url, method, data) => {
+const request = async (url, method, data) => {
     const options = {
         method,
         headers: { 'Content-Type': 'application/json' },
     };
 
-    let token;
+    if (auth.currentUser) {
+        const token = await getToken();
 
-    if (token) {
         options.headers = {
             ...options.headers,
             'Authorization': `Bearer ${token}`,

@@ -1,36 +1,36 @@
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { registerAsCompany, login } from '../../../../actions/userActions';
 import InputField from '../../../shared/InputField';
 import Button from '../../../shared/Button';
-import AlertBox from '../../../shared/AlertBox';
 import useForm from '../../../../hooks/useForm';
-import './CompanyForm.scss';
+import { register, login } from '../../../../actions/userActions';
+import './RegisterForm.scss';
 
-const CompanyForm = ({ registerAsCompany, login }) => {
+const UserForm = ({ register, login }) => {
     const [values, setValues] = useForm({
         email: '',
-        companyName: '',
+        firstName: '',
+        lastName: '',
         password: '',
         confirmPassword: '',
+        balance: 0,
     });
     const history = useHistory();
 
-    const handleRegisterCompany = async (e) => {
+    const handleRegisterUser = async (e) => {
         e.preventDefault();
-        await registerAsCompany({ ...values });
+        await register({ ...values });
         await login(values.email, values.password);
         history.push('/');
     };
 
     return (
-        <div className='company-form-wrapper'>
-            <form onSubmit={handleRegisterCompany}>
-                <h3>Company</h3>
+        <div className='user-form-wrapper'>
+            <form onSubmit={handleRegisterUser}>
                 <InputField
-                    onChange={setValues}
                     value={values.email}
                     name='email'
+                    onChange={setValues}
                     labelWidth={50}
                     type='email'
                     id='email'
@@ -38,19 +38,31 @@ const CompanyForm = ({ registerAsCompany, login }) => {
                     Email
                 </InputField>
                 <InputField
+                    value={values.firstName}
+                    name='firstName'
                     onChange={setValues}
-                    value={values.companyName}
-                    name='companyName'
-                    labelWidth={120}
+                    labelWidth={80}
                     type='text'
-                    id='company-name'
+                    id='firstName'
                 >
-                    Company Name
+                    First Name
                 </InputField>
+
                 <InputField
+                    value={values.lastName}
+                    name='lastName'
                     onChange={setValues}
-                    value={values.password}
+                    labelWidth={80}
+                    type='text'
+                    id='lastName'
+                >
+                    Last Name
+                </InputField>
+
+                <InputField
                     name='password'
+                    value={values.password}
+                    onChange={setValues}
                     labelWidth={70}
                     type='password'
                     id='password'
@@ -58,25 +70,37 @@ const CompanyForm = ({ registerAsCompany, login }) => {
                     Password
                 </InputField>
                 <InputField
-                    onChange={setValues}
-                    value={values.confirmPassword}
                     name='confirmPassword'
+                    value={values.confirmPassword}
+                    onChange={setValues}
                     labelWidth={140}
                     type='password'
                     id='confirm-password'
                 >
                     Confirm Password
                 </InputField>
-                <AlertBox severity='info' title='Information'>
-                    If you are owner of a company and you can't register be sure
-                    to contact us immediately!
-                </AlertBox>
+
+                <InputField
+                    name='balance'
+                    value={values.balance}
+                    onChange={setValues}
+                    labelWidth={105}
+                    type='number'
+                    id='amount'
+                    adorment={'$'}
+                    helperText={'*Not neccessary'}
+                >
+                    Initial Balance
+                </InputField>
                 <Button className='button-white'>REGISTER</Button>
             </form>
         </div>
     );
 };
 
-const mapDispatchToProps = { registerAsCompany, login };
+const mapDispatchToProps = {
+    register,
+    login,
+};
 
-export default connect(null, mapDispatchToProps)(CompanyForm);
+export default connect(null, mapDispatchToProps)(UserForm);
