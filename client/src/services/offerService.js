@@ -10,4 +10,5 @@ export default {
             price,
             photoUrl,
         }),
+    getAll: () => requester.get(offerApi.getAll()),
 };

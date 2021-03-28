@@ -13,6 +13,11 @@ const create = async (brand, model, year, price, photoUrl, userId) => {
     return offer._id;
 };
 
+const getAll = async () => {
+    return await Offer.find();
+};
+
 module.exports = {
     create,
+    getAll,
 };

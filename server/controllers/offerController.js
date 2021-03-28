@@ -4,6 +4,12 @@ const { isAuthorized } = require('../middlewares/authenticate');
 const offerService = require('../services/offerService');
 const userService = require('../services/userService');
 
+offerController.get('/', async (req, res) => {
+    const offers = await offerService.getAll();
+
+    res.status(200).json(offers);
+});
+
 offerController.post('/', isAuthorized, async (req, res) => {
     const { brand, model, year, price, photoUrl } = req.body;
     const { user_id: userId } = req.user;
