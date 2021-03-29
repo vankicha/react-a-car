@@ -11,3 +11,8 @@ export const offerApi = {
     create: () => `${OFFERS_URL}`,
     getAll: () => `${OFFERS_URL}`,
 };
+
+export const userApi = {
+    getUserInfo: (userId) =>
+        `${USER_URL}/${userId}?fields=balance,firstName,lastName`,
+};

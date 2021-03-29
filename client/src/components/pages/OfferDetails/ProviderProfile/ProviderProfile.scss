@@ -1,0 +1,42 @@
+.provider-profile-wrapper {
+    padding-top: 20px;
+    margin-left: 20px;
+    width: 400px;
+
+    .provider-picture {
+        width: 200px;
+        height: 200px;
+        margin: auto;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 4px solid #fa8fac;
+    }
+
+    h3 {
+        font: normal bold 22px/40px 'Roboto';
+        color: #c82333;
+        text-align: center;
+    }
+
+    p {
+        font: italic normal 17px/30px 'Roboto';
+        opacity: 0.5;
+        text-align: center;
+    }
+
+    .latest-offers {
+        display: flex;
+        flex-flow: column;
+
+        a {
+            width: 250px;
+            margin-left: 40px;
+        }
+
+        img {
+            width: 100%;
+            height: 130px;
+            border-radius: 4px;
+        }
+    }
+}

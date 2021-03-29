@@ -6,6 +6,7 @@ import Home from './components/pages/Home';
 import Register from './components/pages/Register';
 import Login from './components/pages/Login';
 import Provide from './components/pages/Provide';
+import OfferDetails from './components/pages/OfferDetails';
 import './App.scss';
 
 function App({ verifyAuth }) {
@@ -20,6 +21,11 @@ function App({ verifyAuth }) {
                     <Route exact path='/'>
                         <Redirect to='/offers' />
                     </Route>
+                    <Route
+                        exact
+                        path='/offers/:offerId/details'
+                        component={OfferDetails}
+                    />
                     <Route path='/offers' component={Home} />
                     <Route path='/register' component={Register} />
                     <Route path='/login' component={Login} />

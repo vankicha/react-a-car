@@ -7,6 +7,7 @@ const initialState = {
     name: '',
     token: '',
     offers: [],
+    balance: 0,
 };
 
 const user = (state = initialState, action) => {

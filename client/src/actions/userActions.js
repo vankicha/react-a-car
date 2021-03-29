@@ -2,6 +2,7 @@ import { SET_CREDENTIALS, LOGOUT, PROVIDE_CAR } from '../actionTypes/userTypes';
 import { auth } from '../utils/firebase';
 import authService from '../services/authService';
 import offerService from '../services/offerService';
+import userService from '../services/userService';
 
 const setCredentialsSuccess = (userInfo) => ({
     type: SET_CREDENTIALS,
@@ -45,10 +46,19 @@ export const verifyAuth = () => async (dispatch) => {
     auth.onIdTokenChanged(async (user) => {
         if (user) {
             const email = user.email;
-            const token = await user.getIdToken();
-            const tokenResult = await user.getIdTokenResult();
+            const { claims, token } = await user.getIdTokenResult();
+            const resUserInfo = await userService.getUserInfo(claims.user_id);
+            const userInfo = await resUserInfo.json();
 
-            dispatch(setCredentialsSuccess({ email, token }));
+            dispatch(
+                setCredentialsSuccess({
+                    email,
+                    token,
+                    _id: claims.user_id,
+                    balance: userInfo.balance,
+                    name: `${userInfo.firstName} ${userInfo.lastName}`,
+                })
+            );
         }
     });
 };
