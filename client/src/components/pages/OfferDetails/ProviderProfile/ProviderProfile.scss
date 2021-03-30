@@ -1,7 +1,6 @@
 .provider-profile-wrapper {
     padding-top: 20px;
-    margin-left: 20px;
-    width: 400px;
+    width: 300px;
 
     .provider-picture {
         width: 200px;
@@ -9,7 +8,19 @@
         margin: auto;
         border-radius: 50%;
         overflow: hidden;
-        border: 4px solid #fa8fac;
+        border: 4px solid rgba(0, 0, 0, 0.5);
+
+        img,
+        svg {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            margin-top: 20px;
+
+            path {
+                fill: rgba(0, 0, 0, 0.5);
+            }
+        }
     }
 
     h3 {
@@ -29,14 +40,15 @@
         flex-flow: column;
 
         a {
-            width: 250px;
-            margin-left: 40px;
+            font: normal bold 15px/30px 'Roboto';
+            color: black;
+            text-decoration: none;
+            margin-bottom: 10px;
         }
 
-        img {
-            width: 100%;
-            height: 130px;
-            border-radius: 4px;
+        span {
+            font: italic normal 14px/30px 'Roboto';
+            opacity: 0.5;
         }
     }
 }

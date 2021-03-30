@@ -1,0 +1,57 @@
+.offer-container {
+    display: flex;
+    width: 1100px;
+
+    .offer-information {
+        margin: 0px auto;
+        width: 200px;
+
+        h3 {
+            font: normal bold 20px 'Roboto';
+            opacity: 0.8;
+            margin-top: 0px;
+        }
+
+        p {
+            font: normal normal 15px 'Roboto';
+        }
+
+        .car-specifications {
+            span {
+                font: italic bold 14px 'Roboto';
+                padding-left: 10px;
+
+                &.status {
+                    color: green;
+                }
+
+                &.status.forbidden {
+                    color: #c82333;
+                }
+            }
+        }
+
+        .drop-down-regions,
+        .drop-down-hours {
+            display: flex;
+            align-items: center;
+            height: 42px;
+            margin-bottom: 15px;
+
+            .MuiInput-underline:after {
+                border-bottom: 2px solid #c82333;
+            }
+        }
+
+        .button-white {
+            padding: 5px;
+            margin: auto;
+            width: 50%;
+        }
+    }
+
+    img {
+        width: 800px;
+        height: 550px;
+    }
+}
