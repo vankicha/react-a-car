@@ -10,4 +10,6 @@ export default {
             price,
             hours,
         }),
+    updateUserPhoto: (userId, photoUrl) =>
+        requester.put(userApi.updateUserPhoto(userId), { photoUrl }),
 };

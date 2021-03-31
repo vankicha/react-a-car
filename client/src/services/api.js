@@ -17,4 +17,5 @@ export const userApi = {
     getUserInfo: (userId) =>
         `${USER_URL}/${userId}?fields=balance,firstName,lastName,photoUrl`,
     rentCar: (userId) => `${USER_URL}/${userId}/rentals`,
+    updateUserPhoto: (userId) => `${USER_URL}/${userId}/photo`,
 };

@@ -24,10 +24,15 @@ const deposit = async (userId, price) => {
     return await User.updateOne({ _id: userId }, { $inc: { balance: price } });
 };
 
+const updateUserPhoto = async (userId, photoUrl) => {
+    return await User.updateOne({ _id: userId }, { photoUrl });
+};
+
 module.exports = {
     updateOffers,
     getUserInfo,
     updateUserRentals,
     withdraw,
     deposit,
+    updateUserPhoto,
 };

@@ -1,34 +1,51 @@
 import { connect } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
     getUsername,
     getUserPhoto,
     getUserEmail,
     getUserBalance,
+    getUserId,
 } from '../../../../reducers/userReducer';
+import { updateUserPhoto } from '../../../../actions/userActions';
 import { ReactComponent as DefaultProfileLogo } from '../../assets/default-profile-logo.svg';
 import UploadPhotoButton from '../../../shared/UploadPhotoButton';
 import Button from '../../../shared/Button';
 import DepositForm from './DepositForm';
 import './UserInformation.scss';
 
-const UserInformation = ({ photoUrl, fullName, email, balance }) => {
-    const [expandDepositForm, setexpandDepositForm] = useState(false);
+const UserInformation = ({
+    userPhotoUrl,
+    fullName,
+    email,
+    balance,
+    userId,
+    updateUserPhoto,
+}) => {
+    const [expandDepositForm, setExpandDepositForm] = useState(false);
+    const [photoUrl, setPhotoUrl] = useState(userPhotoUrl);
+
+    useEffect(() => {
+        if (photoUrl && photoUrl !== userPhotoUrl) {
+            updateUserPhoto(userId, photoUrl);
+        }
+    }, [photoUrl, userPhotoUrl]);
 
     const onDepositClick = () => {
-        setexpandDepositForm((prevState) => setexpandDepositForm(!prevState));
+        setExpandDepositForm((prevState) => setExpandDepositForm(!prevState));
     };
 
     return (
         <aside className='user-information-wrapper'>
             <div className='user-profile-picture'>
-                {photoUrl ? (
-                    <img src={photoUrl} alt='logo' />
+                {userPhotoUrl ? (
+                    <img src={userPhotoUrl} alt='logo' />
                 ) : (
                     <DefaultProfileLogo />
                 )}
             </div>
             <UploadPhotoButton
+                setPhotoUrl={setPhotoUrl}
                 storageFolder='users/'
                 textContent='CHANGE PROFILE PICTURE'
             />
@@ -53,9 +70,14 @@ const UserInformation = ({ photoUrl, fullName, email, balance }) => {
 
 const mapStateToProps = (state) => ({
     fullName: getUsername(state),
-    photoUrl: getUserPhoto(state),
+    userPhotoUrl: getUserPhoto(state),
     email: getUserEmail(state),
     balance: getUserBalance(state),
+    userId: getUserId(state),
 });
 
-export default connect(mapStateToProps)(UserInformation);
+const mapDispatchToProps = {
+    updateUserPhoto,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserInformation);

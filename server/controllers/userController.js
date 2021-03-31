@@ -28,4 +28,13 @@ userController.put('/:userId/rentals', isAuthorized, async (req, res) => {
     res.status(200).end();
 });
 
+userController.put('/:userId/photo', isAuthorized, async (req, res) => {
+    const userId = req.params.userId;
+    const photoUrl = req.body.photoUrl;
+
+    await userService.updateUserPhoto(userId, photoUrl)
+
+    res.status(200).json({ photoUrl });
+});
+
 module.exports = userController;
