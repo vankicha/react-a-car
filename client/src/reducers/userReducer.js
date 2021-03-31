@@ -11,6 +11,7 @@ const initialState = {
     isLogged: false,
     name: '',
     token: '',
+    photoUrl: '',
     offers: [],
     balance: 0,
 };
@@ -39,3 +40,6 @@ export default user;
 export const getIsLogged = (state) => state.user.isLogged;
 export const getUserId = (state) => state.user._id;
 export const getUserBalance = (state) => state.user.balance;
+export const getUsername = (state) => state.user.name;
+export const getUserPhoto = (state) => state.user.photoUrl;
+export const getUserEmail = (state) => state.user.email;

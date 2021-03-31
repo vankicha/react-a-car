@@ -67,6 +67,7 @@ export const verifyAuth = () => async (dispatch) => {
                     _id: claims.user_id,
                     balance: userInfo.balance,
                     name: `${userInfo.firstName} ${userInfo.lastName}`,
+                    photoUrl: userInfo.photoUrl,
                 })
             );
         }

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ReactComponent as DefaultProfileLogo } from './assets/default-profile-logo.svg';
+import { ReactComponent as DefaultProfileLogo } from '../../assets/default-profile-logo.svg';
 import './ProviderProfile.scss';
 
 const ProviderProfile = ({ provider }) => {

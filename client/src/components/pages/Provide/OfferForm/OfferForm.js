@@ -1,5 +1,5 @@
 import InputField from '../../../shared/InputField';
-import UploadPhotoButton from './UploadPhotoButton';
+import UploadPhotoButton from '../../../shared/UploadPhotoButton';
 import Button from '../../../shared/Button';
 import useForm from '../../../../hooks/useForm';
 import { useHistory } from 'react-router-dom';
@@ -67,7 +67,11 @@ const OfferForm = ({ provideCar, photoUrl, setPhotoUrl }) => {
                 >
                     Price
                 </InputField>
-                <UploadPhotoButton setPhotoUrl={setPhotoUrl} />
+                <UploadPhotoButton
+                    setPhotoUrl={setPhotoUrl}
+                    storageFolder='offers/'
+                    textContent='Add image'
+                />
                 <Button className='button-white'>PROVIDE</Button>
             </form>
         </div>

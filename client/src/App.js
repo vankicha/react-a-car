@@ -7,6 +7,7 @@ import Register from './components/pages/Register';
 import Login from './components/pages/Login';
 import Provide from './components/pages/Provide';
 import OfferDetails from './components/pages/OfferDetails';
+import Profile from './components/pages/Profile';
 import './App.scss';
 
 function App({ verifyAuth }) {
@@ -30,6 +31,7 @@ function App({ verifyAuth }) {
                     <Route path='/register' component={Register} />
                     <Route path='/login' component={Login} />
                     <Route path='/provide' component={Provide} />
+                    <Route path='/profile' component={Profile} />
                 </Switch>
             </div>
         </BrowserRouter>
