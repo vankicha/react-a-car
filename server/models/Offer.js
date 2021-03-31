@@ -29,8 +29,4 @@ const offerSchema = new mongoose.Schema({
     },
 });
 
-offerSchema.virtual('isAvailable').get(function () {
-    return this.lastRented > new Date().getDate();
-});
-
 module.exports = mongoose.model('Offer', offerSchema);

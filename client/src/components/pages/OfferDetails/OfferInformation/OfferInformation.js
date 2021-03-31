@@ -1,45 +1,117 @@
 import Button from '../../../shared/Button';
 import DropdownHours from './DropdownHours';
 import DropdownRegions from './DropdownRegions';
+import CarSpecifications from './CarSpecifications';
+import AlertBox from '../../../shared/AlertBox';
+import {
+    getIsLogged,
+    getUserId,
+    getUserBalance,
+} from '../../../../reducers/userReducer';
+import { rentCar } from '../../../../actions/userActions';
+import { useState } from 'react';
+import { connect } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { validateRent } from '../../../../helpers/validators';
 import './OfferInformation.scss';
 
-const OfferInformation = () => {
-    return (
-        <div className='offer-container'>
-            <img
-                src='https://firebasestorage.googleapis.com/v0/b/react-a-car.appspot.com/o/offers%2F720s.jpg0.18608752315966504?alt=media&token=e9de29d0-4dbd-41e8-9527-ff57073b9e71'
-                alt='car'
-            />
-            <div className='offer-information'>
-                <h3>Offer information</h3>
-                <div className='car-specifications'>
-                    <p>
-                        Brand: <span>McLaren</span>
-                    </p>
-                    <p>
-                        Model: <span>720S</span>
-                    </p>
-                    <p>
-                        Year: <span>2018</span>
-                    </p>
-                    <p>
-                        Price: <span>120$/hour</span>
-                    </p>
-                    <p>
-                        Status: <span className='status'>AVAILABLE</span>
-                    </p>
+const OfferInformation = ({ offer, isLogged, userId, rentCar, balance }) => {
+    const [hours, setHours] = useState('');
+    const [region, setRegion] = useState('');
+    const [currentPrice, setCurrentPrice] = useState(offer.pricePerHour);
+    const [error, setError] = useState('');
+    const history = useHistory();
 
-                    <div className='drop-down-hours'>
-                        <p>Rent for:</p> <DropdownHours />
-                    </div>
-                    <div className='drop-down-regions'>
-                        <p>Region:</p> <DropdownRegions />
-                    </div>
+    const handleRegionChange = (event) => {
+        setRegion(event.target.value);
+    };
+
+    const handleHoursChange = (event) => {
+        setHours(event.target.value);
+        setCurrentPrice(offer.pricePerHour * event.target.value);
+    };
+
+    const handleUserRent = async () => {
+        try {
+            validateRent(
+                userId,
+                offer.provider._id,
+                balance,
+                currentPrice,
+                hours,
+                region
+            );
+
+            await rentCar(
+                userId,
+                offer.provider._id,
+                offer._id,
+                currentPrice,
+                hours
+            );
+
+            history.push('/offers');
+        } catch (error) {
+            setError(error.message);
+        }
+    };
+
+    return (
+        <>
+            <div className='offer-container'>
+                <img src={offer.image} alt='car' />
+                <div className='offer-information'>
+                    <h3>Offer information</h3>
+                    <CarSpecifications offer={offer} />
+
+                    {offer.isAvailable && (
+                        <>
+                            <div className='drop-down-hours'>
+                                <p>Rent for:</p>
+                                <DropdownHours
+                                    hours={hours}
+                                    handleHoursChange={handleHoursChange}
+                                />
+                            </div>
+                            <div className='drop-down-regions'>
+                                <p>Region:</p>{' '}
+                                <DropdownRegions
+                                    region={region}
+                                    handleRegionChange={handleRegionChange}
+                                />
+                            </div>
+                            <Button
+                                handlerClick={handleUserRent}
+                                className='button-white'
+                                disabled={!isLogged}
+                            >
+                                RENT {hours && `FOR $${currentPrice}`}
+                            </Button>
+                            {!isLogged && (
+                                <AlertBox severity='info'>
+                                    You need to be logged to rent a car!
+                                </AlertBox>
+                            )}
+
+                            {error && (
+                                <AlertBox severity='error'>{error}</AlertBox>
+                            )}
+                        </>
+                    )}
                 </div>
-                <Button className='button-white'>RENT FOR $120</Button>
             </div>
-        </div>
+        </>
     );
 };
 
-export default OfferInformation;
+const mapStateToProps = (state) => ({
+    isLogged: getIsLogged(state),
+    userId: getUserId(state),
+    balance: getUserBalance(state),
+});
+
+const mapDispatchToProps = {
+    rentCar,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OfferInformation);

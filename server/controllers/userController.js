@@ -1,6 +1,8 @@
 const { Router } = require('express');
 const userController = Router();
 const userService = require('../services/userService');
+const offerService = require('../services/offerService');
+const { isAuthorized } = require('../middlewares/authenticate');
 
 userController.get('/:userId', async (req, res) => {
     const userInfo = await userService.getUserInfo(
@@ -9,6 +11,21 @@ userController.get('/:userId', async (req, res) => {
     );
 
     res.status(200).json(userInfo);
+});
+
+userController.put('/:userId/rentals', isAuthorized, async (req, res) => {
+    const userId = req.params.userId;
+    const providerId = req.body.providerId;
+    const offerId = req.body.offerId;
+    const hours = Number(req.body.hours);
+    const price = Number(req.body.price);
+
+    await userService.updateUserRentals(userId, offerId);
+    await offerService.updateRentedDate(offerId, hours);
+    await userService.deposit(providerId, price);
+    await userService.withdraw(userId, price);
+
+    res.status(200).end();
 });
 
 module.exports = userController;

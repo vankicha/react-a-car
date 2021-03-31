@@ -16,21 +16,6 @@
             font: normal normal 15px 'Roboto';
         }
 
-        .car-specifications {
-            span {
-                font: italic bold 14px 'Roboto';
-                padding-left: 10px;
-
-                &.status {
-                    color: green;
-                }
-
-                &.status.forbidden {
-                    color: #c82333;
-                }
-            }
-        }
-
         .drop-down-regions,
         .drop-down-hours {
             display: flex;

@@ -27,4 +27,10 @@ offerController.post('/', isAuthorized, async (req, res) => {
     res.status(201).json({ offerId });
 });
 
+offerController.get('/:offerId', async (req, res) => {
+    const offer = await offerService.getOne(req.params.offerId);
+    
+    res.status(200).json(offer);
+});
+
 module.exports = offerController;

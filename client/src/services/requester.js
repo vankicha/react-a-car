@@ -27,7 +27,7 @@ const request = async (url, method, data) => {
 export default {
     get: (url) => request(url, HTTP.GET),
     post: (url, data) => request(url, HTTP.POST, data),
-    put: (url, data) => request(url, HTTP.put, data),
-    patch: (url, data) => request(url, HTTP.patch, data),
-    delete: (url) => request(url, HTTP.delete),
+    put: (url, data) => request(url, HTTP.PUT, data),
+    patch: (url, data) => request(url, HTTP.PATCH, data),
+    delete: (url) => request(url, HTTP.DELETE),
 };

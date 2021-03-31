@@ -1,4 +1,9 @@
-import { SET_CREDENTIALS, LOGOUT, PROVIDE_CAR } from '../actionTypes/userTypes';
+import {
+    SET_CREDENTIALS,
+    LOGOUT,
+    PROVIDE_CAR,
+    RENT_CAR,
+} from '../actionTypes/userTypes';
 import { auth } from '../utils/firebase';
 import authService from '../services/authService';
 import offerService from '../services/offerService';
@@ -12,6 +17,11 @@ const setCredentialsSuccess = (userInfo) => ({
 const provideCarSuccess = (offerId) => ({
     type: PROVIDE_CAR,
     payload: offerId,
+});
+
+const rentCarSuccess = (price) => ({
+    type: RENT_CAR,
+    payload: price,
 });
 
 export const register = ({
@@ -82,4 +92,12 @@ export const provideCar = ({ brand, model, year, price, photoUrl }) => async (
     const data = await response.json();
 
     dispatch(provideCarSuccess(data.offerId));
+};
+
+export const rentCar = (userId, providerId, offerId, price, hours) => async (
+    dispatch
+) => {
+    await userService.rentCar(userId, providerId, offerId, price, hours);
+
+    dispatch(rentCarSuccess(price));
 };

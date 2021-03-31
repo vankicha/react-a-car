@@ -11,4 +11,5 @@ export default {
             photoUrl,
         }),
     getAll: () => requester.get(offerApi.getAll()),
+    getOne: (offerId) => requester.get(offerApi.getOne(offerId)),
 };

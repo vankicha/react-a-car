@@ -1,7 +1,6 @@
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
@@ -19,18 +18,12 @@ const hoursArr = [
     { text: '24 hours', value: 24 },
 ];
 
-const DropdownHours = () => {
+const DropdownHours = ({ hours, handleHoursChange }) => {
     const classes = useStyles();
-
-    const [hours, setHours] = useState('');
-
-    const handleChange = (event) => {
-        setHours(event.target.value);
-    };
 
     return (
         <FormControl className={classes.formControl}>
-            <Select value={hours} onChange={handleChange} displayEmpty>
+            <Select value={hours} onChange={handleHoursChange} displayEmpty>
                 <MenuItem value=''>
                     <em>Hour/s</em>
                 </MenuItem>

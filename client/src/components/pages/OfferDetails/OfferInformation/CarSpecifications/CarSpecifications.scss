@@ -1,0 +1,14 @@
+.car-specifications {
+    span {
+        font: italic bold 14px 'Roboto';
+        padding-left: 10px;
+
+        &.status {
+            color: green;
+        }
+
+        &.status.forbidden {
+            color: #c82333;
+        }
+    }
+}

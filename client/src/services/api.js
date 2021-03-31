@@ -10,9 +10,11 @@ export const authApi = {
 export const offerApi = {
     create: () => `${OFFERS_URL}`,
     getAll: () => `${OFFERS_URL}`,
+    getOne: (offerId) => `${OFFERS_URL}/${offerId}`,
 };
 
 export const userApi = {
     getUserInfo: (userId) =>
         `${USER_URL}/${userId}?fields=balance,firstName,lastName`,
+    rentCar: (userId) => `${USER_URL}/${userId}/rentals`,
 };
