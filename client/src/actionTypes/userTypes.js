@@ -3,3 +3,4 @@ export const PROVIDE_CAR = 'PROVIDE_CAR';
 export const LOGOUT = 'LOGOUT';
 export const RENT_CAR = 'RENT_CAR';
 export const UPDATE_USER_PHOTO = 'UPDATE_USER_PHOTO';
+export const UPDATE_USER_BALANCE = ' UPDATE_USER_BALANCE';

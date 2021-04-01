@@ -4,6 +4,7 @@ import {
     PROVIDE_CAR,
     RENT_CAR,
     UPDATE_USER_PHOTO,
+    UPDATE_USER_BALANCE,
 } from '../actionTypes/userTypes';
 
 const initialState = {
@@ -31,6 +32,8 @@ const user = (state = initialState, action) => {
             return { ...state, balance: state.balance - action.payload };
         case UPDATE_USER_PHOTO:
             return { ...state, photoUrl: action.payload };
+        case UPDATE_USER_BALANCE:
+            return { ...state, balance: state.balance + Number(action.payload) };
         case LOGOUT:
             return initialState;
         default:

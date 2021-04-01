@@ -4,6 +4,7 @@ import {
     PROVIDE_CAR,
     RENT_CAR,
     UPDATE_USER_PHOTO,
+    UPDATE_USER_BALANCE,
 } from '../actionTypes/userTypes';
 import { auth } from '../utils/firebase';
 import authService from '../services/authService';
@@ -28,6 +29,11 @@ const rentCarSuccess = (price) => ({
 const updateUserPhotoSuccess = (photoUrl) => ({
     type: UPDATE_USER_PHOTO,
     payload: photoUrl,
+});
+
+const userDepositSuccess = (amount) => ({
+    type: UPDATE_USER_BALANCE,
+    payload: amount,
 });
 
 export const register = ({
@@ -113,4 +119,10 @@ export const updateUserPhoto = (userId, photoUrl) => async (dispatch) => {
     await userService.updateUserPhoto(userId, photoUrl);
 
     dispatch(updateUserPhotoSuccess(photoUrl));
+};
+
+export const deposit = (userId, password, amount) => async (dispatch) => {
+    await userService.deposit(userId, password, amount);
+
+    dispatch(userDepositSuccess(amount));
 };

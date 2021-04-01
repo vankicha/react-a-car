@@ -12,4 +12,6 @@ export default {
         }),
     updateUserPhoto: (userId, photoUrl) =>
         requester.put(userApi.updateUserPhoto(userId), { photoUrl }),
+    deposit: (userId, password, amount) =>
+        requester.put(userApi.deposit(userId), { password, amount }),
 };

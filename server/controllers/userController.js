@@ -32,9 +32,21 @@ userController.put('/:userId/photo', isAuthorized, async (req, res) => {
     const userId = req.params.userId;
     const photoUrl = req.body.photoUrl;
 
-    await userService.updateUserPhoto(userId, photoUrl)
+    await userService.updateUserPhoto(userId, photoUrl);
 
     res.status(200).json({ photoUrl });
+});
+
+userController.put('/:userId/balance', isAuthorized, async (req, res) => {
+    const userId = req.params.userId;
+    const amount = Number(req.body.amount);
+    const password = req.body.password;
+
+    if (req.query.action === 'deposit') {
+        await userService.deposit(userId, amount, password);
+    }
+
+    res.status(200).end();
 });
 
 module.exports = userController;

@@ -29,7 +29,7 @@ const UserInformation = ({
         if (photoUrl && photoUrl !== userPhotoUrl) {
             updateUserPhoto(userId, photoUrl);
         }
-    }, [photoUrl, userPhotoUrl]);
+    }, [photoUrl, userPhotoUrl, balance]);
 
     const onDepositClick = () => {
         setExpandDepositForm((prevState) => setExpandDepositForm(!prevState));
@@ -63,7 +63,9 @@ const UserInformation = ({
             <Button className='button-white' handlerClick={onDepositClick}>
                 DEPOSIT
             </Button>
-            {expandDepositForm && <DepositForm />}
+            {expandDepositForm && (
+                <DepositForm setExpandDepositForm={setExpandDepositForm} />
+            )}
         </aside>
     );
 };

@@ -1,4 +1,5 @@
 const User = require('../models/User');
+const bcrypt = require('bcrypt');
 
 const updateOffers = async (userId, offerId) => {
     await User.updateOne({ _id: userId }, { $push: { offers: [offerId] } });
@@ -20,7 +21,17 @@ const withdraw = async (userId, price) => {
     return await User.updateOne({ _id: userId }, { $inc: { balance: -price } });
 };
 
-const deposit = async (userId, price) => {
+const deposit = async (userId, price, password) => {
+    const user = await User.findById(userId);
+
+    if (password) {
+        const comparedPassword = await bcrypt.compare(password, user.password);
+
+        if (!comparedPassword) {
+            throw { message: 'Wrong password' };
+        }
+    }
+
     return await User.updateOne({ _id: userId }, { $inc: { balance: price } });
 };
 
