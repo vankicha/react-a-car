@@ -5,6 +5,8 @@ import {
     RENT_CAR,
     UPDATE_USER_PHOTO,
     UPDATE_USER_BALANCE,
+    FETCH_USER_OFFERS,
+    DELETE_USER_OFFER,
 } from '../actionTypes/userTypes';
 import { auth } from '../utils/firebase';
 import authService from '../services/authService';
@@ -34,6 +36,16 @@ const updateUserPhotoSuccess = (photoUrl) => ({
 const userDepositSuccess = (amount) => ({
     type: UPDATE_USER_BALANCE,
     payload: amount,
+});
+
+const fetchUserOffersSucess = (offers) => ({
+    type: FETCH_USER_OFFERS,
+    payload: offers,
+});
+
+const deleteOfferSuccess = (offerId) => ({
+    type: DELETE_USER_OFFER,
+    target: offerId,
 });
 
 export const register = ({
@@ -125,4 +137,17 @@ export const deposit = (userId, password, amount) => async (dispatch) => {
     await userService.deposit(userId, password, amount);
 
     dispatch(userDepositSuccess(amount));
+};
+
+export const fetchUserOffers = (userId) => async (dispatch) => {
+    const response = await userService.getUserOffers(userId);
+    const data = await response.json();
+
+    dispatch(fetchUserOffersSucess(data.offers));
+};
+
+export const deleteOffer = (userId, offerId) => async (dispatch) => {
+    await userService.deleteOffer(userId, offerId);
+
+    dispatch(deleteOfferSuccess(offerId));
 };

@@ -5,6 +5,11 @@ const offerService = require('../services/offerService');
 const { isAuthorized } = require('../middlewares/authenticate');
 
 userController.get('/:userId', async (req, res) => {
+    if (req.query.fields === 'offers') {
+        const result = await userService.getUserOffers(req.params.userId);
+        return res.status(200).json(result);
+    }
+
     const userInfo = await userService.getUserInfo(
         req.params.userId,
         req.query.fields
@@ -25,7 +30,7 @@ userController.put('/:userId/rentals', isAuthorized, async (req, res) => {
     await userService.deposit(providerId, price);
     await userService.withdraw(userId, price);
 
-    res.status(200).end();
+    res.status(202).end();
 });
 
 userController.put('/:userId/photo', isAuthorized, async (req, res) => {
@@ -46,7 +51,17 @@ userController.put('/:userId/balance', isAuthorized, async (req, res) => {
         await userService.deposit(userId, amount, password);
     }
 
-    res.status(200).end();
+    res.status(202).end();
+});
+
+userController.delete('/:userId/offers/:offerId', async (req, res) => {
+    const userId = req.params.userId;
+    const offerId = req.params.offerId;
+
+    await userService.removeOffer(userId, offerId);
+    await offerService.deleteOne(offerId);
+
+    res.status(204).end();
 });
 
 module.exports = userController;

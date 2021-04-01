@@ -41,9 +41,14 @@ const updateRentedDate = async (offerId, hours) => {
     return await Offer.updateOne({ _id: offerId }, { lastRented: date });
 };
 
+const deleteOne = async (offerId) => {
+    return await Offer.deleteOne({ _id: offerId });
+};
+
 module.exports = {
     create,
     getAll,
     getOne,
     updateRentedDate,
+    deleteOne,
 };

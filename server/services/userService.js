@@ -39,6 +39,25 @@ const updateUserPhoto = async (userId, photoUrl) => {
     return await User.updateOne({ _id: userId }, { photoUrl });
 };
 
+const getUserOffers = async (userId) => {
+    return await User.findById(userId)
+        .select('offers')
+        .populate({
+            path: 'offers',
+            options: {
+                select: { brand: 1, model: 1, image: 1 },
+            },
+        });
+};
+
+const removeOffer = async (userId, offerId) => {
+    console.log(userId, offerId);
+    return await User.updateOne(
+        { _id: userId },
+        { $pull: { offers: offerId } }
+    );
+};
+
 module.exports = {
     updateOffers,
     getUserInfo,
@@ -46,4 +65,6 @@ module.exports = {
     withdraw,
     deposit,
     updateUserPhoto,
+    getUserOffers,
+    removeOffer,
 };

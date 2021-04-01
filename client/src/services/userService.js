@@ -14,4 +14,7 @@ export default {
         requester.put(userApi.updateUserPhoto(userId), { photoUrl }),
     deposit: (userId, password, amount) =>
         requester.put(userApi.deposit(userId), { password, amount }),
+    getUserOffers: (userId) => requester.get(userApi.getUserOffers(userId)),
+    deleteOffer: (userId, offerId) =>
+        requester.delete(userApi.deleteOffer(userId, offerId)),
 };
