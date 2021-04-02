@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { getUserId, getUserOffers } from '../../../../reducers/userReducer';
 import { fetchUserOffers } from '../../../../actions/userActions';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
@@ -12,6 +13,7 @@ const UserOffers = ({ userId, userOffers, fetchUserOffers }) => {
     const [skipCount, setSkipCount] = useState(0);
     const [currentId, setCurrentId] = useState('');
     const [open, setOpen] = useState(false);
+    const pages = Math.ceil(userOffers.length / 3);
 
     const onBackwardClick = () => {
         setSkipCount((prevState) => prevState - 3);
@@ -41,16 +43,19 @@ const UserOffers = ({ userId, userOffers, fetchUserOffers }) => {
                     <div key={x._id} className='offer-content'>
                         <h5>{`${x.brand} ${x.model}`}</h5>
                         <img src={x.image} />
-                        <Button
-                            dataId={x._id}
-                            className='button-white'
-                            handlerClick={handleDeleteOffer}
-                        >
-                            DELETE
-                        </Button>
+                        <div className='buttons-wrapper'>
+                            <Link to={`/offers/${x._id}/edit`}>EDIT</Link>
+                            <Button
+                                dataId={x._id}
+                                className='button-white'
+                                handlerClick={handleDeleteOffer}
+                            >
+                                DELETE
+                            </Button>
+                        </div>
                     </div>
                 ))}
-                {skipCount !== userOffers.length - 1 && (
+                {Math.ceil(skipCount / 3) + 1 < pages && (
                     <ArrowForwardIosIcon onClick={onForwardClick} />
                 )}
                 <ConfirmationDialog

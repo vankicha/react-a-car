@@ -11,6 +11,7 @@ export const offerApi = {
     create: () => `${OFFERS_URL}`,
     getAll: () => `${OFFERS_URL}`,
     getOne: (offerId) => `${OFFERS_URL}/${offerId}`,
+    updateOffer: (offerId) => `${OFFERS_URL}/${offerId}`,
 };
 
 export const userApi = {

@@ -6,10 +6,15 @@ const useForm = (defaultState) => {
     return [
         state,
         (event) => {
-            setState((currentState) => ({
-                ...currentState,
-                [event.target.name]: event.target.value,
-            }));
+            event.target
+                ? setState((currentState) => ({
+                      ...currentState,
+                      [event.target.name]: event.target.value,
+                  }))
+                : setState((currState) => ({
+                      ...currState,
+                      ...event,
+                  }));
         },
     ];
 };

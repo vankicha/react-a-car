@@ -12,4 +12,6 @@ export default {
         }),
     getAll: () => requester.get(offerApi.getAll()),
     getOne: (offerId) => requester.get(offerApi.getOne(offerId)),
+    updateOffer: (offerId, offerInfo) =>
+        requester.put(offerApi.updateOffer(offerId), offerInfo),
 };

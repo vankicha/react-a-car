@@ -45,10 +45,18 @@ const deleteOne = async (offerId) => {
     return await Offer.deleteOne({ _id: offerId });
 };
 
+const updateOne = async (offerId, brand, model, year, price, image) => {
+    return await Offer.updateOne(
+        { _id: offerId },
+        { brand, model, year, pricePerHour: price, image }
+    );
+};
+
 module.exports = {
     create,
     getAll,
     getOne,
     updateRentedDate,
     deleteOne,
+    updateOne,
 };

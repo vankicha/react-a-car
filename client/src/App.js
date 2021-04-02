@@ -7,6 +7,7 @@ import Register from './components/pages/Register';
 import Login from './components/pages/Login';
 import Provide from './components/pages/Provide';
 import OfferDetails from './components/pages/OfferDetails';
+import OfferEdit from './components/pages/OfferEdit';
 import Profile from './components/pages/Profile';
 import './App.scss';
 
@@ -26,6 +27,11 @@ function App({ verifyAuth }) {
                         exact
                         path='/offers/:offerId/details'
                         component={OfferDetails}
+                    />
+                    <Route
+                        exact
+                        path='/offers/:offerId/edit'
+                        component={OfferEdit}
                     />
                     <Route path='/offers' component={Home} />
                     <Route path='/register' component={Register} />

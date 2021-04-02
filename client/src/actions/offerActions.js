@@ -33,3 +33,7 @@ export const fetchOffer = (offerId) => async (dispatch) => {
 
     dispatch(fetchOfferSuccess(data));
 };
+
+export const updateOffer = async (offerId, offerInfo) => {
+    await offerService.updateOffer(offerId, offerInfo);
+};

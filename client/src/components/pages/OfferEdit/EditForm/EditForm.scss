@@ -1,0 +1,55 @@
+.offer-form {
+    width: 600px;
+    display: flex;
+
+    form {
+        width: 400px;
+        margin: 0 auto;
+    }
+
+    h3 {
+        font: italic normal 20px/32px 'Roboto';
+        text-align: center;
+        color: #c82333;
+    }
+
+    input {
+        font: normal normal 14px/32px 'Roboto';
+        color: #c82333;
+
+        &:-webkit-autofill,
+        &:-webkit-autofill:hover,
+        &:-webkit-autofill:focus {
+            box-shadow: 0 0 0px 1000px white inset;
+            -webkit-box-shadow: 0 0 0px 1000px white inset;
+            -webkit-text-fill-color: #c82333;
+            transition: background-color 5000s ease-in-out 0s;
+        }
+    }
+
+    .upload-photo-wrapper {
+        width: 140px;
+    }
+
+    .button-white {
+        margin: 10px auto;
+        width: 140px;
+        height: 40px;
+    }
+
+    .MuiFormLabel-root {
+        color: #c82333;
+    }
+
+    .MuiFormLabel-root.Mui-focused {
+        color: #c82333;
+    }
+
+    .MuiOutlinedInput-input:focus {
+        color: #c82333;
+    }
+
+    .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+        border-color: #c82333;
+    }
+}

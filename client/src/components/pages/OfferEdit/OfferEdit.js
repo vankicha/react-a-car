@@ -1,14 +1,13 @@
 import Main from '../../layouts/Main';
-import ProviderProfile from './ProviderProfile';
-import OfferInformation from './OfferInformation';
+import EditForm from './EditForm';
 import { connect } from 'react-redux';
+import { getCurrentOffer } from '../../../reducers/offerReducer';
 import { useEffect } from 'react';
 import useClear from '../../../hooks/useClear';
 import { fetchOffer, clearCurrentOffer } from '../../../actions/offerActions';
-import { getCurrentOffer } from '../../../reducers/offerReducer';
-import './OfferDetails.scss';
+import './OfferEdit.scss';
 
-const OfferDetails = ({ match, fetchOffer, clearCurrentOffer, offer }) => {
+const OfferEdit = ({ match, offer, fetchOffer, clearCurrentOffer }) => {
     const offerId = match.params.offerId;
 
     useClear(clearCurrentOffer);
@@ -19,9 +18,8 @@ const OfferDetails = ({ match, fetchOffer, clearCurrentOffer, offer }) => {
 
     return (
         <Main>
-            <div className='offer-details-wrapper'>
-                <OfferInformation offer={offer} />
-                <ProviderProfile provider={offer.provider} />
+            <div className='offer-edit-wrapper'>
+                <EditForm offer={offer} />
             </div>
         </Main>
     );
@@ -33,4 +31,4 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = { fetchOffer, clearCurrentOffer };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OfferDetails);
+export default connect(mapStateToProps, mapDispatchToProps)(OfferEdit);

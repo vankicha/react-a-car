@@ -9,7 +9,7 @@ import {
     getUserBalance,
 } from '../../../../reducers/userReducer';
 import { rentCar } from '../../../../actions/userActions';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { validateRent } from '../../../../helpers/validators';
@@ -21,6 +21,12 @@ const OfferInformation = ({ offer, isLogged, userId, rentCar, balance }) => {
     const [currentPrice, setCurrentPrice] = useState(offer.pricePerHour);
     const [error, setError] = useState('');
     const history = useHistory();
+
+    useEffect(() => {
+        setHours('');
+        setRegion('');
+        setCurrentPrice(offer.pricePerHour);
+    }, [offer]);
 
     const handleRegionChange = (event) => {
         setRegion(event.target.value);
@@ -53,6 +59,7 @@ const OfferInformation = ({ offer, isLogged, userId, rentCar, balance }) => {
             history.push('/offers');
         } catch (error) {
             setError(error.message);
+            setTimeout(() => setError(''), 3000);
         }
     };
 

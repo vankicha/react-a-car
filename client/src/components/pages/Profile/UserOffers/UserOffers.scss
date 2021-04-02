@@ -26,6 +26,32 @@
             margin-right: 10px;
             margin-left: 10px;
         }
+
+        .buttons-wrapper {
+            width: 130px;
+            display: flex;
+            justify-content: space-between;
+            margin: auto;
+            align-items: center;
+
+            a {
+                font: normal normal 13px/25px 'Roboto';
+                padding: 1px 10px;
+                text-decoration: none;
+                color: rgb(13, 216, 13);
+                border: 1px solid rgb(13, 216, 13);
+                border-radius: 4px;
+
+                &:hover {
+                    color: white;
+                    background: rgb(13, 216, 13);
+                }
+            }
+
+            .button-white {
+                margin: auto;
+            }
+        }
     }
 
     h3 {

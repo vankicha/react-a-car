@@ -29,8 +29,24 @@ offerController.post('/', isAuthorized, async (req, res) => {
 
 offerController.get('/:offerId', async (req, res) => {
     const offer = await offerService.getOne(req.params.offerId);
-    
+
     res.status(200).json(offer);
+});
+
+offerController.put('/:offerId', isAuthorized, async (req, res) => {
+    const { offerId } = req.params;
+    const { brand, model, year, price, image } = req.body;
+
+    await offerService.updateOne(
+        offerId,
+        brand,
+        model,
+        year,
+        Number(price),
+        image
+    );
+
+    res.status(202).end();
 });
 
 module.exports = offerController;
