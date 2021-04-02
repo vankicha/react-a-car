@@ -1,7 +1,6 @@
 .offer-wrapper {
     width: 355px;
     height: 330px;
-    cursor: pointer;
 
     a {
         text-decoration: none;
@@ -20,7 +19,7 @@
     }
 
     .offer-brief-info {
-        padding: 0px 20px;
+        height: 25px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -40,6 +39,11 @@
 
     .offer-availability.forbidden {
         color: #c82333;
+    }
+
+    .button-black {
+        font-size: 10px;
+        margin: 0px 0px 0px 50px;
     }
 }
 

@@ -18,4 +18,6 @@ export default {
     deleteOffer: (userId, offerId) =>
         requester.delete(userApi.deleteOffer(userId, offerId)),
     getUserRentals: (userId) => requester.get(userApi.getUserRentals(userId)),
+    addOfferToReviews: (userId, offerId) =>
+        requester.put(userApi.addOfferToReviews(userId), { offerId }),
 };

@@ -67,4 +67,15 @@ userController.delete('/:userId/offers/:offerId', async (req, res) => {
     res.status(204).end();
 });
 
+userController.put('/:userId/reviews', isAuthorized, async (req, res) => {
+    const userId = req.params.userId;
+    const { offerId } = req.body;
+
+    if (req.query.action === 'add') {
+        await userService.addToReviews(userId, offerId);
+    }
+
+    res.status(202).end();
+});
+
 module.exports = userController;

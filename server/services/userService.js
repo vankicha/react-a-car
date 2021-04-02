@@ -69,6 +69,14 @@ const getUserRentals = async (userId) => {
         });
 };
 
+const addToReviews = async (userId, offerId) => {
+    const user = await User.findById(userId);
+
+    if (!user.review.includes(offerId)) {
+        await User.updateOne({ _id: userId }, { $push: { review: [offerId] } });
+    }
+};
+
 module.exports = {
     updateOffers,
     getUserInfo,
@@ -79,4 +87,5 @@ module.exports = {
     getUserOffers,
     removeOffer,
     getUserRentals,
+    addToReviews,
 };

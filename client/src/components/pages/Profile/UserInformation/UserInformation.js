@@ -26,7 +26,7 @@ const UserInformation = ({
     const [photoUrl, setPhotoUrl] = useState(userPhotoUrl);
 
     useEffect(() => {
-        if (photoUrl && photoUrl !== userPhotoUrl) {
+        if (userId && photoUrl && photoUrl !== userPhotoUrl) {
             updateUserPhoto(userId, photoUrl);
         }
     }, [photoUrl, userPhotoUrl, balance]);

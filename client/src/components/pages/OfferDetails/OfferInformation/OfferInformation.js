@@ -81,7 +81,7 @@ const OfferInformation = ({ offer, isLogged, userId, rentCar, balance }) => {
                                 />
                             </div>
                             <div className='drop-down-regions'>
-                                <p>Region:</p>{' '}
+                                <p>Region:</p>
                                 <DropdownRegions
                                     region={region}
                                     handleRegionChange={handleRegionChange}

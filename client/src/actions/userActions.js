@@ -8,6 +8,7 @@ import {
     FETCH_USER_OFFERS,
     DELETE_USER_OFFER,
     FETCH_USER_RENTALS,
+    ADD_OFFER_TO_REVIEWS,
 } from '../actionTypes/userTypes';
 import { auth } from '../utils/firebase';
 import authService from '../services/authService';
@@ -52,6 +53,11 @@ const deleteOfferSuccess = (offerId) => ({
 const fetchUserRentalsSuccess = (rentals) => ({
     type: FETCH_USER_RENTALS,
     payload: rentals,
+});
+
+const addOfferToReviewsSuccess = (offerId) => ({
+    type: ADD_OFFER_TO_REVIEWS,
+    payload: offerId,
 });
 
 export const register = ({
@@ -163,4 +169,10 @@ export const fetchUserRentals = (userId) => async (dispatch) => {
     const data = await response.json();
 
     dispatch(fetchUserRentalsSuccess(data.rented));
+};
+
+export const addOfferToReviews = (userId, offerId) => async (dispatch) => {
+    await userService.addOfferToReviews(userId, offerId);
+
+    dispatch(addOfferToReviewsSuccess(offerId));
 };

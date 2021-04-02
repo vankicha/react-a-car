@@ -19,20 +19,20 @@ const Header = ({ isLogged, logout }) => {
             <CarLogo />
             <Link to='/'>REACT A CAR</Link>
 
-            <ul className='list-left-links'>
-                {isLogged && (
-                    <>
-                        <Link to='/profile'>My Profile</Link>
-                        <Link to='/provide'>Provide a car</Link>
-                    </>
-                )}
-                <Link to='/about'>About Us</Link>
-            </ul>
-
             {isLogged ? (
-                <Button className='button-white' handlerClick={handleLogout}>
-                    LOGOUT
-                </Button>
+                <>
+                    <ul className='list-left-links'>
+                        <Link to='/profile'>My Profile</Link>
+                        <Link to='/reviews'>Reviews</Link>
+                        <Link to='/provide'>Provide a car</Link>
+                    </ul>
+                    <Button
+                        className='button-white'
+                        handlerClick={handleLogout}
+                    >
+                        LOGOUT
+                    </Button>
+                </>
             ) : (
                 <ul className='guest-links'>
                     <Link to='/login'>Login</Link>

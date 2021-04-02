@@ -8,6 +8,7 @@ import {
     FETCH_USER_OFFERS,
     DELETE_USER_OFFER,
     FETCH_USER_RENTALS,
+    ADD_OFFER_TO_REVIEWS,
 } from '../actionTypes/userTypes';
 
 const initialState = {
@@ -50,6 +51,11 @@ const user = (state = initialState, action) => {
             return {
                 ...state,
                 balance: state.balance + Number(action.payload),
+            };
+        case ADD_OFFER_TO_REVIEWS:
+            return {
+                ...state,
+                reviews: [...state.reviews, action.payload],
             };
         case LOGOUT:
             return initialState;

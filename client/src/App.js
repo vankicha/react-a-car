@@ -9,6 +9,7 @@ import Provide from './components/pages/Provide';
 import OfferDetails from './components/pages/OfferDetails';
 import OfferEdit from './components/pages/OfferEdit';
 import Profile from './components/pages/Profile';
+import Reviews from './components/pages/Reviews';
 import './App.scss';
 
 function App({ verifyAuth }) {
@@ -38,6 +39,7 @@ function App({ verifyAuth }) {
                     <Route path='/login' component={Login} />
                     <Route path='/provide' component={Provide} />
                     <Route path='/profile' component={Profile} />
+                    <Route path='/reviews' component={Reviews} />
                 </Switch>
             </div>
         </BrowserRouter>
