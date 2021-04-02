@@ -58,6 +58,17 @@ const removeOffer = async (userId, offerId) => {
     );
 };
 
+const getUserRentals = async (userId) => {
+    return await User.findById(userId)
+        .select('rented')
+        .populate({
+            path: 'rented',
+            options: {
+                select: { brand: 1, model: 1, image: 1 },
+            },
+        });
+};
+
 module.exports = {
     updateOffers,
     getUserInfo,
@@ -67,4 +78,5 @@ module.exports = {
     updateUserPhoto,
     getUserOffers,
     removeOffer,
+    getUserRentals,
 };

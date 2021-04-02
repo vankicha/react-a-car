@@ -39,22 +39,29 @@ const UserOffers = ({ userId, userOffers, fetchUserOffers }) => {
                 {skipCount > 0 && (
                     <ArrowBackIosIcon onClick={onBackwardClick} />
                 )}
-                {userOffers.slice(skipCount, skipCount + 3).map((x) => (
-                    <div key={x._id} className='offer-content'>
-                        <h5>{`${x.brand} ${x.model}`}</h5>
-                        <img src={x.image} />
-                        <div className='buttons-wrapper'>
-                            <Link to={`/offers/${x._id}/edit`}>EDIT</Link>
-                            <Button
-                                dataId={x._id}
-                                className='button-white'
-                                handlerClick={handleDeleteOffer}
-                            >
-                                DELETE
-                            </Button>
+                {userOffers.length > 0 ? (
+                    userOffers.slice(skipCount, skipCount + 3).map((x) => (
+                        <div key={x._id} className='offer-content'>
+                            <h5>{`${x.brand} ${x.model}`}</h5>
+                            <img src={x.image} />
+                            <div className='buttons-wrapper'>
+                                <Link to={`/offers/${x._id}/edit`}>EDIT</Link>
+                                <Button
+                                    dataId={x._id}
+                                    className='button-white'
+                                    handlerClick={handleDeleteOffer}
+                                >
+                                    DELETE
+                                </Button>
+                            </div>
                         </div>
+                    ))
+                ) : (
+                    <div className='no-offers-content'>
+                        <span>YOU DON'T OFFER ANYTHING...</span>
+                        <Link to='/provide'>PROVIDE A CAR</Link>
                     </div>
-                ))}
+                )}
                 {Math.ceil(skipCount / 3) + 1 < pages && (
                     <ArrowForwardIosIcon onClick={onForwardClick} />
                 )}

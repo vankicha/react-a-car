@@ -17,4 +17,5 @@ export default {
     getUserOffers: (userId) => requester.get(userApi.getUserOffers(userId)),
     deleteOffer: (userId, offerId) =>
         requester.delete(userApi.deleteOffer(userId, offerId)),
+    getUserRentals: (userId) => requester.get(userApi.getUserRentals(userId)),
 };

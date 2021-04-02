@@ -8,6 +8,9 @@ userController.get('/:userId', async (req, res) => {
     if (req.query.fields === 'offers') {
         const result = await userService.getUserOffers(req.params.userId);
         return res.status(200).json(result);
+    } else if (req.query.fields === 'rentals') {
+        const result = await userService.getUserRentals(req.params.userId);
+        return res.status(200).json(result);
     }
 
     const userInfo = await userService.getUserInfo(

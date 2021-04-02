@@ -7,6 +7,7 @@ import {
     UPDATE_USER_BALANCE,
     FETCH_USER_OFFERS,
     DELETE_USER_OFFER,
+    FETCH_USER_RENTALS,
 } from '../actionTypes/userTypes';
 import { auth } from '../utils/firebase';
 import authService from '../services/authService';
@@ -46,6 +47,11 @@ const fetchUserOffersSucess = (offers) => ({
 const deleteOfferSuccess = (offerId) => ({
     type: DELETE_USER_OFFER,
     target: offerId,
+});
+
+const fetchUserRentalsSuccess = (rentals) => ({
+    type: FETCH_USER_RENTALS,
+    payload: rentals,
 });
 
 export const register = ({
@@ -150,4 +156,11 @@ export const deleteOffer = (userId, offerId) => async (dispatch) => {
     await userService.deleteOffer(userId, offerId);
 
     dispatch(deleteOfferSuccess(offerId));
+};
+
+export const fetchUserRentals = (userId) => async (dispatch) => {
+    const response = await userService.getUserRentals(userId);
+    const data = await response.json();
+
+    dispatch(fetchUserRentalsSuccess(data.rented));
 };

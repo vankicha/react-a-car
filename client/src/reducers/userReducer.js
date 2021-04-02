@@ -7,6 +7,7 @@ import {
     UPDATE_USER_BALANCE,
     FETCH_USER_OFFERS,
     DELETE_USER_OFFER,
+    FETCH_USER_RENTALS,
 } from '../actionTypes/userTypes';
 
 const initialState = {
@@ -17,6 +18,8 @@ const initialState = {
     token: '',
     photoUrl: '',
     offers: [],
+    rentals: [],
+    reviews: [],
     balance: 0,
 };
 
@@ -29,13 +32,14 @@ const user = (state = initialState, action) => {
                 isLogged: true,
             };
         case DELETE_USER_OFFER:
-            console.log(action.target);
             return {
                 ...state,
                 offers: state.offers.filter((x) => x._id !== action.target),
             };
         case FETCH_USER_OFFERS:
-            return { ...state, offers: [...action.payload] };
+            return { ...state, offers: action.payload };
+        case FETCH_USER_RENTALS:
+            return { ...state, rentals: action.payload };
         case PROVIDE_CAR:
             return { ...state, offers: [...state.offers, action.payload] };
         case RENT_CAR:
@@ -63,3 +67,5 @@ export const getUsername = (state) => state.user.name;
 export const getUserPhoto = (state) => state.user.photoUrl;
 export const getUserEmail = (state) => state.user.email;
 export const getUserOffers = (state) => state.user.offers;
+export const getUserRentals = (state) => state.user.rentals;
+export const getUserReviews = (state) => state.user.reviews;

@@ -22,4 +22,5 @@ export const userApi = {
     deposit: (userId) => `${USER_URL}/${userId}/balance?action=deposit`,
     getUserOffers: (userId) => `${USER_URL}/${userId}?fields=offers`,
     deleteOffer: (userId, offerId) => `${USER_URL}/${userId}/offers/${offerId}`,
+    getUserRentals: (userId) => `${USER_URL}/${userId}?fields=rentals`,
 };
