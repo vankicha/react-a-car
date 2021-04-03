@@ -27,6 +27,12 @@ const offerSchema = new mongoose.Schema({
     lastRented: {
         type: Date,
     },
+    reviewers: [
+        {
+            type: mongoose.Types.ObjectId,
+            ref: 'User',
+        },
+    ],
 });
 
 module.exports = mongoose.model('Offer', offerSchema);

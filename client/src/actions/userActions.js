@@ -9,6 +9,8 @@ import {
     DELETE_USER_OFFER,
     FETCH_USER_RENTALS,
     ADD_OFFER_TO_REVIEWS,
+    FETCH_USER_REVIEWS,
+    REMOVE_OFFER_FROM_REVIEWS,
 } from '../actionTypes/userTypes';
 import { auth } from '../utils/firebase';
 import authService from '../services/authService';
@@ -58,6 +60,16 @@ const fetchUserRentalsSuccess = (rentals) => ({
 const addOfferToReviewsSuccess = (offerId) => ({
     type: ADD_OFFER_TO_REVIEWS,
     payload: offerId,
+});
+
+const fetchUserReviewsSuccess = (reviews) => ({
+    type: FETCH_USER_REVIEWS,
+    payload: reviews,
+});
+
+const removeOfferFromReviewsSuccess = (offerId) => ({
+    type: REMOVE_OFFER_FROM_REVIEWS,
+    target: offerId,
 });
 
 export const register = ({
@@ -171,8 +183,23 @@ export const fetchUserRentals = (userId) => async (dispatch) => {
     dispatch(fetchUserRentalsSuccess(data.rented));
 };
 
+export const fetchUserReviews = (userId) => async (dispatch) => {
+    const response = await userService.getUserReviews(userId);
+    const data = await response.json();
+
+    dispatch(fetchUserReviewsSuccess(data));
+};
+
 export const addOfferToReviews = (userId, offerId) => async (dispatch) => {
     await userService.addOfferToReviews(userId, offerId);
 
     dispatch(addOfferToReviewsSuccess(offerId));
+};
+
+export const removeOfferFromReviews = (userId, offerId, providerId) => async (
+    dispatch
+) => {
+    await userService.removeOfferFromReviews(userId, offerId);
+
+    dispatch(removeOfferFromReviewsSuccess(offerId));
 };

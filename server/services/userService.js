@@ -77,6 +77,24 @@ const addToReviews = async (userId, offerId) => {
     }
 };
 
+const removeFromReviews = async (userId, offerId) => {
+    return await User.updateOne(
+        { _id: userId },
+        { $pull: { review: offerId } }
+    );
+};
+
+const getUserReviews = async (userId) => {
+    return await User.findById(userId)
+        .select('review')
+        .populate({
+            path: 'review',
+            options: {
+                select: { brand: 1, model: 1, image: 1 },
+            },
+        });
+};
+
 module.exports = {
     updateOffers,
     getUserInfo,
@@ -87,5 +105,7 @@ module.exports = {
     getUserOffers,
     removeOffer,
     getUserRentals,
+    getUserReviews,
     addToReviews,
+    removeFromReviews,
 };

@@ -11,6 +11,9 @@ userController.get('/:userId', async (req, res) => {
     } else if (req.query.fields === 'rentals') {
         const result = await userService.getUserRentals(req.params.userId);
         return res.status(200).json(result);
+    } else if (req.query.fields === 'reviews') {
+        const result = await userService.getUserReviews(req.params.userId);
+        return res.status(200).json(result.review);
     }
 
     const userInfo = await userService.getUserInfo(
@@ -73,9 +76,20 @@ userController.put('/:userId/reviews', isAuthorized, async (req, res) => {
 
     if (req.query.action === 'add') {
         await userService.addToReviews(userId, offerId);
+        await offerService.addToReviewers(offerId, userId);
     }
 
     res.status(202).end();
+});
+
+userController.delete('/:userId/reviews/:offerId', async (req, res) => {
+    const userId = req.params.userId;
+    const offerId = req.params.offerId;
+
+    await userService.removeFromReviews(userId, offerId);
+    await offerService.removeFromReviewers(offerId, userId);
+
+    res.status(204).end();
 });
 
 module.exports = userController;

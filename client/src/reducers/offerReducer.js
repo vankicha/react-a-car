@@ -12,6 +12,7 @@ const initialOfferState = {
     pricePerHour: '',
     isAvailable: true,
     provider: { offers: [] },
+    reviewers: [],
 };
 
 const current = (state = initialOfferState, action = {}) => {

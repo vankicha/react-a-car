@@ -9,6 +9,8 @@ import {
     DELETE_USER_OFFER,
     FETCH_USER_RENTALS,
     ADD_OFFER_TO_REVIEWS,
+    FETCH_USER_REVIEWS,
+    REMOVE_OFFER_FROM_REVIEWS,
 } from '../actionTypes/userTypes';
 
 const initialState = {
@@ -41,6 +43,8 @@ const user = (state = initialState, action) => {
             return { ...state, offers: action.payload };
         case FETCH_USER_RENTALS:
             return { ...state, rentals: action.payload };
+        case FETCH_USER_REVIEWS:
+            return { ...state, reviews: action.payload };
         case PROVIDE_CAR:
             return { ...state, offers: [...state.offers, action.payload] };
         case RENT_CAR:
@@ -55,7 +59,12 @@ const user = (state = initialState, action) => {
         case ADD_OFFER_TO_REVIEWS:
             return {
                 ...state,
-                reviews: [...state.reviews, action.payload],
+                reviews: [...state.reviews, { _id: action.payload }],
+            };
+        case REMOVE_OFFER_FROM_REVIEWS:
+            return {
+                ...state,
+                reviews: state.reviews.filter((x) => x._id !== action.target),
             };
         case LOGOUT:
             return initialState;

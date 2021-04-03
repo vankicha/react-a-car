@@ -52,6 +52,20 @@ const updateOne = async (offerId, brand, model, year, price, image) => {
     );
 };
 
+const addToReviewers = async (offerId, userId) => {
+    return await Offer.updateOne(
+        { _id: offerId },
+        { $push: { reviewers: [userId] } }
+    );
+};
+
+const removeFromReviewers = async (offerId, userId) => {
+    return await Offer.updateOne(
+        { _id: offerId },
+        { $pull: { reviewers: userId } }
+    );
+};
+
 module.exports = {
     create,
     getAll,
@@ -59,4 +73,6 @@ module.exports = {
     updateRentedDate,
     deleteOne,
     updateOne,
+    addToReviewers,
+    removeFromReviewers,
 };

@@ -23,5 +23,8 @@ export const userApi = {
     getUserOffers: (userId) => `${USER_URL}/${userId}?fields=offers`,
     deleteOffer: (userId, offerId) => `${USER_URL}/${userId}/offers/${offerId}`,
     getUserRentals: (userId) => `${USER_URL}/${userId}?fields=rentals`,
+    getUserReviews: (userId) => `${USER_URL}/${userId}?fields=reviews`,
     addOfferToReviews: (userId) => `${USER_URL}/${userId}/reviews?action=add`,
+    removeOfferFromReviews: (userId, offerId) =>
+        `${USER_URL}/${userId}/reviews/${offerId}`,
 };

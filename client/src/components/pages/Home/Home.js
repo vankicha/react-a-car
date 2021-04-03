@@ -15,7 +15,7 @@ const Home = () => {
     return (
         <div className='home-wrapper'>
             <Main>
-                <SectionOffers setOpen={setOpen} />
+                <SectionOffers open={open} setOpen={setOpen} />
                 <Snackbar
                     open={open}
                     autoHideDuration={6000}

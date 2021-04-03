@@ -18,6 +18,9 @@ export default {
     deleteOffer: (userId, offerId) =>
         requester.delete(userApi.deleteOffer(userId, offerId)),
     getUserRentals: (userId) => requester.get(userApi.getUserRentals(userId)),
+    getUserReviews: (userId) => requester.get(userApi.getUserReviews(userId)),
     addOfferToReviews: (userId, offerId) =>
         requester.put(userApi.addOfferToReviews(userId), { offerId }),
+    removeOfferFromReviews: (userId, offerId) =>
+        requester.delete(userApi.removeOfferFromReviews(userId, offerId)),
 };

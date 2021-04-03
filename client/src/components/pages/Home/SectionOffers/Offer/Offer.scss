@@ -21,7 +21,6 @@
     .offer-brief-info {
         height: 25px;
         display: flex;
-        justify-content: space-between;
         align-items: center;
     }
 
@@ -29,6 +28,7 @@
         font-style: italic;
         color: black;
         opacity: 0.5;
+        padding-left: 10px;
     }
 
     .offer-availability {
@@ -43,7 +43,7 @@
 
     .button-black {
         font-size: 10px;
-        margin: 0px 0px 0px 50px;
+        margin: 0px 10px 0px auto;
     }
 }
 

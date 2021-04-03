@@ -1,16 +1,31 @@
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { useEffect } from 'react';
+import {
+    addOfferToReviews,
+    fetchUserReviews,
+} from '../../../../../actions/userActions';
 import { getUserId, getUserReviews } from '../../../../../reducers/userReducer';
-import { addOfferToReviews } from '../../../../../actions/userActions';
 import Button from '../../../../shared/Button';
 import './Offer.scss';
 
-const Offer = ({ offer, userId, addOfferToReviews, userReviews, setOpen }) => {
+const Offer = ({
+    offer,
+    userId,
+    userReviews,
+    addOfferToReviews,
+    fetchUserReviews,
+    setOpen,
+}) => {
     const handleReviewLater = async (e) => {
         const offerId = e.currentTarget.dataset.id;
         await addOfferToReviews(userId, offerId);
         setOpen(true);
     };
+
+    useEffect(() => {
+        userId && fetchUserReviews(userId);
+    }, [fetchUserReviews, userId]);
 
     return (
         <div className='offer-wrapper'>
@@ -29,7 +44,7 @@ const Offer = ({ offer, userId, addOfferToReviews, userReviews, setOpen }) => {
                     {!offer.isAvailable && 'Not'} Available
                 </span>
                 <span className='offer-price'>${offer.pricePerHour}/hour</span>
-                {userId && !userReviews.includes(offer._id) && (
+                {userId && !userReviews.find((x) => x._id === offer._id) && (
                     <Button
                         dataId={offer._id}
                         className='button-black'
@@ -48,6 +63,6 @@ const mapStateToProps = (state) => ({
     userReviews: getUserReviews(state),
 });
 
-const mapDispatchToProps = { addOfferToReviews };
+const mapDispatchToProps = { addOfferToReviews, fetchUserReviews };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Offer);

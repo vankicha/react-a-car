@@ -5,7 +5,7 @@ import { getAllOffers } from '../../../../reducers/offerReducer';
 import { fetchOffers } from '../../../../actions/offerActions';
 import './SectionOffers.scss';
 
-const SectionOffers = ({ offers, fetchOffers, setOpen }) => {
+const SectionOffers = ({ offers, fetchOffers, setOpen, open }) => {
     useEffect(() => {
         fetchOffers();
     }, [fetchOffers]);
@@ -13,7 +13,7 @@ const SectionOffers = ({ offers, fetchOffers, setOpen }) => {
     return (
         <div className='section-offers-wrapper'>
             {offers.map((x) => (
-                <Offer key={x._id} offer={x} setOpen={setOpen} />
+                <Offer key={x._id} offer={x} setOpen={setOpen} open={open} />
             ))}
         </div>
     );
