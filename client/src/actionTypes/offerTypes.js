@@ -1,3 +1,5 @@
 export const FETCH_OFFERS = 'FETCH_OFFERS';
 export const FETCH_OFFER = 'FETCH_OFFER';
 export const CLEAR_CURRENT_OFFER = 'CLEAR_CURRENT_OFFER';
+export const FETCH_PENDING = 'FETCH_PENDING';
+export const FETCH_DONE = 'FETCH_DONE';

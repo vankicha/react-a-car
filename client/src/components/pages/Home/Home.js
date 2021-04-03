@@ -6,11 +6,12 @@ import Pagination from '@material-ui/lab/Pagination';
 import { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { getAllOffers } from '../../../reducers/offerReducer';
+import { getAllOffers, getIsFetching } from '../../../reducers/offerReducer';
 import { fetchOffers } from '../../../actions/offerActions';
+import Loader from '../../shared/Loader';
 import './Home.scss';
 
-const Home = ({ location, offers, fetchOffers }) => {
+const Home = ({ location, offers, fetchOffers, isFetching }) => {
     const search = location.search;
     const [count, setCount] = useState(10);
     const [open, setOpen] = useState(false);
@@ -31,23 +32,34 @@ const Home = ({ location, offers, fetchOffers }) => {
     };
 
     useEffect(() => {
-        fetchOffers(currentPage).then((count) =>
-            setCount(Math.ceil(count / 6))
-        );
-    }, [fetchOffers, currentPage]);
+        setCurrentPage(search ? Number(search.split('?page=')[1]) : 1);
+        fetchOffers(currentPage).then((count) => {
+            setCount(Math.ceil(count / 6));
+        });
+    }, [fetchOffers, currentPage, location.search]);
 
     return (
         <Main>
             <div className='home-wrapper'>
-                <SectionOffers offers={offers} open={open} setOpen={setOpen} />
-                <div className='pagination-wrapper'>
-                    <Pagination
-                        page={currentPage}
-                        count={count}
-                        color='secondary'
-                        onChange={onPageChange}
-                    />
-                </div>
+                {isFetching ? (
+                    <Loader type='linear' />
+                ) : (
+                    <>
+                        <SectionOffers
+                            offers={offers}
+                            open={open}
+                            setOpen={setOpen}
+                        />
+                        <div className='pagination-wrapper'>
+                            <Pagination
+                                page={currentPage}
+                                count={count}
+                                color='secondary'
+                                onChange={onPageChange}
+                            />
+                        </div>
+                    </>
+                )}
             </div>
 
             <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
@@ -65,6 +77,7 @@ const Home = ({ location, offers, fetchOffers }) => {
 
 const mapStateToProps = (state) => ({
     offers: getAllOffers(state),
+    isFetching: getIsFetching(state),
 });
 
 const mapDispatchToProps = {

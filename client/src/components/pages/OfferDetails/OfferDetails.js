@@ -5,10 +5,17 @@ import { connect } from 'react-redux';
 import { useEffect } from 'react';
 import useClear from '../../../hooks/useClear';
 import { fetchOffer, clearCurrentOffer } from '../../../actions/offerActions';
-import { getCurrentOffer } from '../../../reducers/offerReducer';
+import { getCurrentOffer, getIsFetching } from '../../../reducers/offerReducer';
+import Loader from '../../shared/Loader';
 import './OfferDetails.scss';
 
-const OfferDetails = ({ match, fetchOffer, clearCurrentOffer, offer }) => {
+const OfferDetails = ({
+    match,
+    fetchOffer,
+    clearCurrentOffer,
+    offer,
+    isFetching,
+}) => {
     const offerId = match.params.offerId;
 
     useClear(clearCurrentOffer);
@@ -19,16 +26,21 @@ const OfferDetails = ({ match, fetchOffer, clearCurrentOffer, offer }) => {
 
     return (
         <Main>
-            <div className='offer-details-wrapper'>
-                <OfferInformation offer={offer} />
-                <ProviderProfile provider={offer.provider} />
-            </div>
+            {isFetching ? (
+                <Loader type='linear' />
+            ) : (
+                <div className='offer-details-wrapper'>
+                    <OfferInformation offer={offer} />
+                    <ProviderProfile provider={offer.provider} />
+                </div>
+            )}
         </Main>
     );
 };
 
 const mapStateToProps = (state) => ({
     offer: getCurrentOffer(state),
+    isFetching: getIsFetching(state),
 });
 
 const mapDispatchToProps = { fetchOffer, clearCurrentOffer };

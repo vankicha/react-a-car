@@ -2,6 +2,8 @@ import {
     FETCH_OFFERS,
     FETCH_OFFER,
     CLEAR_CURRENT_OFFER,
+    FETCH_PENDING,
+    FETCH_DONE,
 } from '../actionTypes/offerTypes';
 import { combineReducers } from 'redux';
 
@@ -47,7 +49,19 @@ const offers = (state = [], action) => {
     }
 };
 
-export default combineReducers({ offers, current });
+const isFetching = (state = false, action = {}) => {
+    switch (action.type) {
+        case FETCH_PENDING:
+            return true;
+        case FETCH_DONE:
+            return false;
+        default:
+            return state;
+    }
+};
+
+export default combineReducers({ offers, current, isFetching });
 
 export const getAllOffers = (state) => state.offers.offers;
 export const getCurrentOffer = (state) => state.offers.current;
+export const getIsFetching = (state) => state.offers.isFetching;
