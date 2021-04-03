@@ -14,8 +14,11 @@ const create = async (brand, model, year, price, photoUrl, userId) => {
     return offer._id;
 };
 
-const getAll = async () => {
-    return await Offer.find();
+const getAll = async (limit, skip) => {
+    const totalCount = await Offer.countDocuments();
+    const offers = await Offer.find().skip(skip).limit(limit);
+
+    return { offers, totalCount };
 };
 
 const getOne = async (offerId) => {

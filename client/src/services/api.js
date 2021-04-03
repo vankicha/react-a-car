@@ -9,7 +9,7 @@ export const authApi = {
 
 export const offerApi = {
     create: () => `${OFFERS_URL}`,
-    getAll: () => `${OFFERS_URL}`,
+    getAll: (page) => `${OFFERS_URL}?page=${page}`,
     getOne: (offerId) => `${OFFERS_URL}/${offerId}`,
     updateOffer: (offerId) => `${OFFERS_URL}/${offerId}`,
 };

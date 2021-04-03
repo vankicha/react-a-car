@@ -10,7 +10,7 @@ export default {
             price,
             photoUrl,
         }),
-    getAll: () => requester.get(offerApi.getAll()),
+    getAll: (page) => requester.get(offerApi.getAll(page)),
     getOne: (offerId) => requester.get(offerApi.getOne(offerId)),
     updateOffer: (offerId, offerInfo) =>
         requester.put(offerApi.updateOffer(offerId), offerInfo),

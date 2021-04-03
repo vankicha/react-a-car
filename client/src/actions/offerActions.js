@@ -20,11 +20,13 @@ export const clearCurrentOffer = () => ({
     type: CLEAR_CURRENT_OFFER,
 });
 
-export const fetchOffers = () => async (dispatch) => {
-    const response = await offerService.getAll();
+export const fetchOffers = (page) => async (dispatch) => {
+    const response = await offerService.getAll(page);
     const data = await response.json();
 
-    dispatch(fetchOffersSuccess(data));
+    dispatch(fetchOffersSuccess(data.offers));
+
+    return data.totalCount;
 };
 
 export const fetchOffer = (offerId) => async (dispatch) => {

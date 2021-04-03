@@ -5,9 +5,12 @@ const offerService = require('../services/offerService');
 const userService = require('../services/userService');
 
 offerController.get('/', async (req, res) => {
-    const offers = await offerService.getAll();
+    const page = Number(req.query.page);
+    const limit = 6;
+    const skip = limit * page - limit;
+    const result = await offerService.getAll(limit, skip);
 
-    res.status(200).json(offers);
+    res.status(200).json(result);
 });
 
 offerController.post('/', isAuthorized, async (req, res) => {

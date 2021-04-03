@@ -1,5 +1,18 @@
 .home-wrapper {
-    .main-content {
-        height: auto;
+    margin: 0 auto;
+
+    .pagination-wrapper {
+        padding-top: 50px;
+        width: 350px;
+        margin: 0 auto;
+        text-align: center;
+
+        nav {
+            display: flex;
+
+            ul {
+                margin: 0 auto;
+            }
+        }
     }
 }
