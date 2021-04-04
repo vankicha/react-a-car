@@ -5,15 +5,18 @@ import './UploadPhotoButton.scss';
 const UploadPhotoButton = ({ setPhotoUrl, storageFolder, textContent }) => {
     const handleUpload = async (e) => {
         const file = e.target.files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
 
-        let fileName = file.name + Math.random();
-        let storageRef = storage.ref(storageFolder + fileName);
+        if (file) {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
 
-        await storageRef.put(file);
-        const photoStorageUrl = await storageRef.getDownloadURL();
-        setPhotoUrl(photoStorageUrl);
+            let fileName = file.name + Math.random();
+            let storageRef = storage.ref(storageFolder + fileName);
+
+            await storageRef.put(file);
+            const photoStorageUrl = await storageRef.getDownloadURL();
+            setPhotoUrl(photoStorageUrl);
+        }
     };
 
     return (

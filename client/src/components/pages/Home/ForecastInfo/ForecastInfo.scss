@@ -1,0 +1,43 @@
+.forecast-info-wrapper {
+    margin: 0px;
+    width: 250px;
+
+    h3 {
+        font: normal bold 20px/30px 'Roboto';
+        text-align: center;
+        color: black;
+        opacity: 0.5;
+    }
+
+    h5 {
+        margin: 0;
+        font: normal bold 15px/30px 'Roboto';
+    }
+
+    .forecast-box {
+        margin: 0px 15px 15px auto;
+        border-bottom: 2px solid gray;
+        width: 200px;
+
+        .forecast-image {
+            display: flex;
+        }
+        p {
+            margin: 0;
+            padding-left: 40px;
+            font-size: 18px;
+            font-family: 'Roboto';
+        }
+    }
+
+    .forecast-temperature-box {
+        margin: 0 auto;
+        width: 180px;
+
+        p {
+            margin: 0 auto;
+            font-size: 18px;
+            font-family: 'Roboto';
+        }
+    }
+}

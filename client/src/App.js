@@ -10,6 +10,7 @@ import OfferDetails from './components/pages/OfferDetails';
 import OfferEdit from './components/pages/OfferEdit';
 import Profile from './components/pages/Profile';
 import Reviews from './components/pages/Reviews';
+import GeoContextProvider from './contexts/GeoContext';
 import './App.scss';
 
 function App({ verifyAuth }) {
@@ -18,31 +19,33 @@ function App({ verifyAuth }) {
     }, [verifyAuth]);
 
     return (
-        <BrowserRouter>
-            <div className='App'>
-                <Switch>
-                    <Route exact path='/'>
-                        <Redirect to='/offers' />
-                    </Route>
-                    <Route
-                        exact
-                        path='/offers/:offerId/details'
-                        component={OfferDetails}
-                    />
-                    <Route
-                        exact
-                        path='/offers/:offerId/edit'
-                        component={OfferEdit}
-                    />
-                    <Route path='/offers' component={Home} />
-                    <Route path='/register' component={Register} />
-                    <Route path='/login' component={Login} />
-                    <Route path='/provide' component={Provide} />
-                    <Route path='/profile' component={Profile} />
-                    <Route path='/reviews' component={Reviews} />
-                </Switch>
-            </div>
-        </BrowserRouter>
+        <GeoContextProvider>
+            <BrowserRouter>
+                <div className='App'>
+                    <Switch>
+                        <Route exact path='/'>
+                            <Redirect to='/offers' />
+                        </Route>
+                        <Route
+                            exact
+                            path='/offers/:offerId/details'
+                            component={OfferDetails}
+                        />
+                        <Route
+                            exact
+                            path='/offers/:offerId/edit'
+                            component={OfferEdit}
+                        />
+                        <Route path='/offers' component={Home} />
+                        <Route path='/register' component={Register} />
+                        <Route path='/login' component={Login} />
+                        <Route path='/provide' component={Provide} />
+                        <Route path='/profile' component={Profile} />
+                        <Route path='/reviews' component={Reviews} />
+                    </Switch>
+                </div>
+            </BrowserRouter>
+        </GeoContextProvider>
     );
 }
 const mapDispatchToProps = {

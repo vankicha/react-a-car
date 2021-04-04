@@ -1,5 +1,6 @@
 import Main from '../../layouts/Main';
 import SectionOffers from './SectionOffers';
+import ForecastInfo from './ForecastInfo';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import Pagination from '@material-ui/lab/Pagination';
@@ -45,11 +46,14 @@ const Home = ({ location, offers, fetchOffers, isFetching }) => {
                     <Loader type='linear' />
                 ) : (
                     <>
-                        <SectionOffers
-                            offers={offers}
-                            open={open}
-                            setOpen={setOpen}
-                        />
+                        <div className='home-content'>
+                            <ForecastInfo />
+                            <SectionOffers
+                                offers={offers}
+                                open={open}
+                                setOpen={setOpen}
+                            />
+                        </div>
                         <div className='pagination-wrapper'>
                             <Pagination
                                 page={currentPage}
