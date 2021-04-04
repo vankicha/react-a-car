@@ -14,6 +14,7 @@ const ConfirmationDialog = ({
     offerId,
     userId,
     deleteOffer,
+    setSkipCount,
 }) => {
     const handleClose = () => {
         setOpen(false);
@@ -22,6 +23,7 @@ const ConfirmationDialog = ({
     const onConfirmationDelete = async () => {
         await deleteOffer(userId, offerId);
         setOpen(false);
+        setSkipCount(0);
     };
 
     return (

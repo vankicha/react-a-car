@@ -2,6 +2,10 @@
     width: 510px;
     display: flex;
 
+    .progress-wrapper {
+        width: 50px;
+    }
+
     form {
         width: 300px;
         margin: 0 auto;

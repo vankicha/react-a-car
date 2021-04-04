@@ -1,6 +1,9 @@
 import InputField from '../../../shared/InputField';
 import UploadPhotoButton from '../../../shared/UploadPhotoButton';
 import Button from '../../../shared/Button';
+import AlertBox from '../../../shared/AlertBox';
+import Loader from '../../../shared/Loader';
+import { validateOfferForm } from '../../../../helpers/validators';
 import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { updateOffer } from '../../../../actions/offerActions';
@@ -9,6 +12,9 @@ import './EditForm.scss';
 
 const EditForm = ({ offer }) => {
     const [photoUrl, setPhotoUrl] = useState('');
+    const [errors, setErrors] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
+    const [photoError, setPhotoError] = useState('');
     const [values, setValues] = useForm({
         brand: '',
         model: '',
@@ -25,8 +31,22 @@ const EditForm = ({ offer }) => {
 
     const handleConfirmEdit = async (e) => {
         e.preventDefault();
-        await updateOffer(offer._id, { ...values, image: photoUrl });
-        history.push(`/offers/${offer._id}/details`);
+        try {
+            setErrors({});
+            setPhotoError('');
+            validateOfferForm({ ...values, photoUrl });
+            setIsLoading(true);
+            await updateOffer(offer._id, { ...values, image: photoUrl });
+            setIsLoading(false);
+            history.push(`/offers/${offer._id}/details`);
+        } catch (error) {
+            console.log(error);
+            setIsLoading(false);
+            if (error.hasOwnProperty('photoUrl')) {
+                setPhotoError(error.photoUrl);
+            }
+            setErrors(error);
+        }
     };
 
     return (
@@ -37,6 +57,7 @@ const EditForm = ({ offer }) => {
             <div className='offer-form'>
                 <form onSubmit={handleConfirmEdit}>
                     <h3>Edit your offer</h3>
+                    {isLoading && <Loader />}
                     <InputField
                         name='brand'
                         value={values.brand}
@@ -44,6 +65,8 @@ const EditForm = ({ offer }) => {
                         type='text'
                         id='brand'
                         onChange={setValues}
+                        error={errors.brand && true}
+                        helperText={errors.brand}
                     >
                         Brand
                     </InputField>
@@ -54,6 +77,8 @@ const EditForm = ({ offer }) => {
                         type='text'
                         id='model'
                         onChange={setValues}
+                        error={errors.model && true}
+                        helperText={errors.model}
                     >
                         Model
                     </InputField>
@@ -64,6 +89,8 @@ const EditForm = ({ offer }) => {
                         type='text'
                         id='year'
                         onChange={setValues}
+                        error={errors.year && true}
+                        helperText={errors.year}
                     >
                         Year
                     </InputField>
@@ -74,11 +101,15 @@ const EditForm = ({ offer }) => {
                         type='number'
                         id='price'
                         adorment={'$'}
-                        helperText={'*per hour'}
                         onChange={setValues}
+                        error={errors.price && true}
+                        helperText={errors.price || '*per hour'}
                     >
                         Price
                     </InputField>
+                    {photoError && (
+                        <AlertBox severity='error'>{photoError}</AlertBox>
+                    )}
                     <UploadPhotoButton
                         setPhotoUrl={setPhotoUrl}
                         storageFolder='offers/'

@@ -68,6 +68,7 @@ const UserOffers = ({ userId, userOffers, fetchUserOffers }) => {
                 <ConfirmationDialog
                     open={open}
                     setOpen={setOpen}
+                    setSkipCount={setSkipCount}
                     offerId={currentId}
                 />
             </div>

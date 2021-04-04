@@ -51,7 +51,6 @@ const getUserOffers = async (userId) => {
 };
 
 const removeOffer = async (userId, offerId) => {
-    console.log(userId, offerId);
     return await User.updateOne(
         { _id: userId },
         { $pull: { offers: offerId } }

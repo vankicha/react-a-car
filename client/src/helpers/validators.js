@@ -90,3 +90,31 @@ export const firebaseErrorHandler = (err, setError) => {
             throw { message: 'Something went wrong!' };
     }
 };
+
+export const validateOfferForm = ({ brand, model, year, price, photoUrl }) => {
+    let errors = {};
+
+    if (!brand) {
+        errors = { ...errors, brand: 'Please choose brand' };
+    }
+
+    if (!model) {
+        errors = { ...errors, model: 'Please choose model' };
+    }
+
+    if (!year) {
+        errors = { ...errors, year: 'Please choose year' };
+    }
+
+    if (price <= 0) {
+        errors = { ...errors, price: 'Please choose valid price' };
+    }
+
+    if (!photoUrl) {
+        errors = { ...errors, photoUrl: 'Please choose image for your offer' };
+    }
+
+    if (Object.keys(errors).length > 0) {
+        throw errors;
+    }
+};
