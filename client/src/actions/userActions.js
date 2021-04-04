@@ -80,15 +80,21 @@ export const register = ({
     balance,
 }) => async (dispatch) => {
     try {
-        await authService.register(
+        const response = await authService.register(
             email,
             firstName,
             lastName,
             password,
             balance
         );
+
+        const data = await response.json();
+
+        if (data.message) {
+            throw { message: data.message };
+        }
     } catch (error) {
-        console.log(error);
+        throw { message: error.message };
     }
 };
 
@@ -96,7 +102,7 @@ export const login = (email, password) => async (dispatch) => {
     try {
         await auth.signInWithEmailAndPassword(email, password);
     } catch (error) {
-        console.log(error);
+        throw error;
     }
 };
 

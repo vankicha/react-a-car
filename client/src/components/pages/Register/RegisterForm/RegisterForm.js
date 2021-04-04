@@ -1,9 +1,12 @@
 import { connect } from 'react-redux';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import InputField from '../../../shared/InputField';
 import Button from '../../../shared/Button';
 import useForm from '../../../../hooks/useForm';
 import { register, login } from '../../../../actions/userActions';
+import { validateRegisterForm } from '../../../../helpers/validators';
+import Loader from '../../../shared/Loader';
 import './RegisterForm.scss';
 
 const UserForm = ({ register, login }) => {
@@ -15,17 +18,29 @@ const UserForm = ({ register, login }) => {
         confirmPassword: '',
         balance: 0,
     });
+    const [errors, setErrors] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
     const history = useHistory();
 
     const handleRegisterUser = async (e) => {
         e.preventDefault();
-        await register({ ...values });
-        await login(values.email, values.password);
-        history.push('/offers');
+        setErrors({});
+        try {
+            validateRegisterForm(values);
+            setIsLoading(true);
+            await register({ ...values });
+            await login(values.email, values.password);
+            setIsLoading(false);
+            history.push('/offers');
+        } catch (err) {
+            setIsLoading(false);
+            setErrors({ ...err });
+        }
     };
 
     return (
         <div className='user-form-wrapper'>
+            {isLoading && <Loader />}
             <form onSubmit={handleRegisterUser}>
                 <InputField
                     value={values.email}
@@ -34,6 +49,8 @@ const UserForm = ({ register, login }) => {
                     labelWidth={50}
                     type='email'
                     id='email'
+                    error={(errors.email || errors.message) && true}
+                    helperText={errors.email || errors.message}
                 >
                     Email
                 </InputField>
@@ -44,6 +61,8 @@ const UserForm = ({ register, login }) => {
                     labelWidth={80}
                     type='text'
                     id='firstName'
+                    error={errors.firstName && true}
+                    helperText={errors.firstName}
                 >
                     First Name
                 </InputField>
@@ -55,6 +74,8 @@ const UserForm = ({ register, login }) => {
                     labelWidth={80}
                     type='text'
                     id='lastName'
+                    error={errors.lastName && true}
+                    helperText={errors.lastName}
                 >
                     Last Name
                 </InputField>
@@ -66,6 +87,8 @@ const UserForm = ({ register, login }) => {
                     labelWidth={70}
                     type='password'
                     id='password'
+                    error={errors.password && true}
+                    helperText={errors.password}
                 >
                     Password
                 </InputField>
@@ -76,6 +99,8 @@ const UserForm = ({ register, login }) => {
                     labelWidth={140}
                     type='password'
                     id='confirm-password'
+                    error={errors.confirmPassword && true}
+                    helperText={errors.confirmPassword}
                 >
                     Confirm Password
                 </InputField>

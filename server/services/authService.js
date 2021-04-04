@@ -4,6 +4,9 @@ const admin = require('firebase-admin');
 const config = require('../config/config');
 
 const register = async (email, firstName, lastName, password, balance) => {
+    if (await User.findOne({ email })) {
+        throw { status: 400, message: 'Invalid email!' };
+    }
     const salt = await bcrypt.genSalt(config.SALT_ROUNDS);
     const hash = await bcrypt.hash(password, salt);
 

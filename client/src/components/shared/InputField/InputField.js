@@ -34,6 +34,7 @@ const InputField = ({
     name,
     value,
     onChange,
+    error,
 }) => {
     const classes = useStyles();
 
@@ -46,6 +47,7 @@ const InputField = ({
                 {children}
             </InputLabel>
             <OutlinedInput
+                error={error}
                 fullWidth={true}
                 id={`outlined-adornment-${id}`}
                 labelWidth={labelWidth}
@@ -63,7 +65,7 @@ const InputField = ({
             />
 
             {helperText && (
-                <FormHelperText id={`outlined-${id}-helper-text`}>
+                <FormHelperText error={error} id={`outlined-${id}-helper-text`}>
                     {helperText}
                 </FormHelperText>
             )}
