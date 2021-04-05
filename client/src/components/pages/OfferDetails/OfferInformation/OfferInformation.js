@@ -9,17 +9,26 @@ import {
     getUserBalance,
 } from '../../../../reducers/userReducer';
 import { rentCar } from '../../../../actions/userActions';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { validateRent } from '../../../../helpers/validators';
+import { GeoContext } from '../../../../contexts/GeoContext';
 import './OfferInformation.scss';
 
-const OfferInformation = ({ offer, isLogged, userId, rentCar, balance }) => {
+const OfferInformation = ({
+    offer,
+    isLogged,
+    userId,
+    rentCar,
+    balance,
+    setShow,
+}) => {
     const [hours, setHours] = useState('');
     const [region, setRegion] = useState('');
     const [currentPrice, setCurrentPrice] = useState(offer.pricePerHour);
     const [error, setError] = useState('');
+    const { getTodayForecast, getVenues } = useContext(GeoContext);
     const history = useHistory();
 
     useEffect(() => {
@@ -28,8 +37,15 @@ const OfferInformation = ({ offer, isLogged, userId, rentCar, balance }) => {
         setCurrentPrice(offer.pricePerHour);
     }, [offer]);
 
-    const handleRegionChange = (event) => {
+    const handleRegionChange = async (event) => {
         setRegion(event.target.value);
+        if (event.target.value) {
+            await getVenues(event.target.value);
+            await getTodayForecast(event.target.value);
+            setShow(true);
+        } else {
+            setShow(false);
+        }
     };
 
     const handleHoursChange = (event) => {

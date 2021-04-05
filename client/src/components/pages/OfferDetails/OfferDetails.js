@@ -1,12 +1,14 @@
 import Main from '../../layouts/Main';
 import ProviderProfile from './ProviderProfile';
 import OfferInformation from './OfferInformation';
+import PopularPlaces from './PopularPlaces';
 import { connect } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useClear from '../../../hooks/useClear';
 import { fetchOffer, clearCurrentOffer } from '../../../actions/offerActions';
 import { getCurrentOffer, getIsFetching } from '../../../reducers/offerReducer';
 import Loader from '../../shared/Loader';
+import ForecastInfo from '../../shared/ForecastInfo';
 import './OfferDetails.scss';
 
 const OfferDetails = ({
@@ -17,6 +19,7 @@ const OfferDetails = ({
     isFetching,
 }) => {
     const offerId = match.params.offerId;
+    const [show, setShow] = useState(false);
 
     useClear(clearCurrentOffer);
 
@@ -25,16 +28,26 @@ const OfferDetails = ({
     }, [fetchOffer, offerId]);
 
     return (
-        <Main>
-            {isFetching ? (
-                <Loader type='linear' />
-            ) : (
-                <div className='offer-details-wrapper'>
-                    <OfferInformation offer={offer} />
-                    <ProviderProfile provider={offer.provider} />
-                </div>
-            )}
-        </Main>
+        <div className='offer-details-wrapper'>
+            <Main>
+                {isFetching ? (
+                    <Loader type='linear' />
+                ) : (
+                    <>
+                        <div className='offer-details-content'>
+                            <OfferInformation offer={offer} setShow={setShow} />
+                            <ProviderProfile provider={offer.provider} />
+                        </div>
+                        {show && (
+                            <div className='offer-additional-info'>
+                                <ForecastInfo />
+                                <PopularPlaces />
+                            </div>
+                        )}
+                    </>
+                )}
+            </Main>
+        </div>
     );
 };
 

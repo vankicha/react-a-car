@@ -4,7 +4,7 @@ export default {
     getLocationKeyByGeoPosition: (lat, lon) =>
         fetch(weatherApi.getLocationKeyByGeoPosition(lat, lon)),
     getLocationKeyByCityName: (cityName) =>
-        fetch(weatherApi.getLocationKeyByGeoPosition(cityName)),
+        fetch(weatherApi.getLocationKeyByCityName(cityName)),
     getTodayForecast: (locationKey) =>
         fetch(weatherApi.getTodayForecast(locationKey)),
 };

@@ -1,5 +1,5 @@
 import { useContext, useEffect } from 'react';
-import { GeoContext } from '../../../../contexts/GeoContext';
+import { GeoContext } from '../../../contexts/GeoContext';
 import './ForecastInfo.scss';
 
 const ForecastInfo = () => {
@@ -9,8 +9,6 @@ const ForecastInfo = () => {
         getTodayForecast();
     }, []);
 
-    console.log(forecastInfo);
-
     return (
         <div className='forecast-info-wrapper'>
             {forecastInfo.loaded && (
@@ -19,9 +17,9 @@ const ForecastInfo = () => {
                     <div className='forecast-box'>
                         <div className='forecast-image'>
                             <h5>Day</h5>
-                            <img
+                            {forecastInfo.day.icon && <img
                                 src={`https://developer.accuweather.com/sites/default/files/${forecastInfo.day.icon}-s.png`}
-                            />
+                            />}
                         </div>
                         <p>{forecastInfo.day.phrase}</p>
                     </div>

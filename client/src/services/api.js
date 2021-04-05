@@ -36,7 +36,12 @@ export const weatherApi = {
     getLocationKeyByGeoPosition: (lat, lon) =>
         `${ACCUWEATHER_URL}/locations/v1/cities/geoposition/search?apikey=${WEATHER_API_KEY}&q=${lat}%2C${lon}&toplevel=true`,
     getLocationKeyByCityName: (cityName) =>
-        `${ACCUWEATHER_URL}/locations/v1/search?apikey=${WEATHER_API_KEY}&q=${cityName}`,
+        `${ACCUWEATHER_URL}/locations/v1/search?apikey=${WEATHER_API_KEY}&q=${cityName}&offset=1`,
     getTodayForecast: (locationKey) =>
         `${ACCUWEATHER_URL}/forecasts/v1/daily/1day/${locationKey}?apikey=${WEATHER_API_KEY}&metric=true`,
+};
+
+export const placeApi = {
+    getVenues: (cityName, date) =>
+        `https://api.foursquare.com/v2/venues/explore?${VENUES_API_KEY}&near=${cityName}&query=sights&limit=5&v=${date}`,
 };

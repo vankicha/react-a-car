@@ -1,6 +1,16 @@
 .offer-details-wrapper {
-    display: flex;
-    height: 100%;
-    width: 100%;
-    justify-content: space-between;
+    .main-content {
+        display: block;
+    }
+
+    .offer-details-content {
+        display: flex;
+        height: 100%;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .offer-additional-info {
+        display: flex;
+    }
 }

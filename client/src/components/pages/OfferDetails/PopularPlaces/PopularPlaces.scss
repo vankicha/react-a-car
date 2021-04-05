@@ -1,0 +1,22 @@
+.popular-places-wrapper {
+    width: 600px;
+    margin-top: 20px;
+    margin-left: 30px;
+
+    h3 {
+        margin: 0 auto;
+        padding-bottom: 10px;
+        font: normal normal 22px/30px 'Roboto';
+        color: grey;
+    }
+
+    span {
+        font: italic bold 22px/30px 'Roboto';
+        text-transform: capitalize;
+    }
+
+    p {
+        font: normal normal 18px/24px 'Roboto';
+        color: #c82333;
+    }
+}

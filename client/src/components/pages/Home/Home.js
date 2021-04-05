@@ -1,6 +1,6 @@
 import Main from '../../layouts/Main';
 import SectionOffers from './SectionOffers';
-import ForecastInfo from './ForecastInfo';
+import ForecastInfo from '../../shared/ForecastInfo';
 import Snackbar from '@material-ui/core/Snackbar';
 import Alert from '@material-ui/lab/Alert';
 import Pagination from '@material-ui/lab/Pagination';
