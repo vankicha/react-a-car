@@ -17,6 +17,6 @@ require('./config/mongoose')(app);
 app.use('/api', routes);
 app.use(errorHandler);
 
-app.listen(config.PORT, () =>
-    console.log(`Listening on port ${config.PORT}...`)
-);
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => console.log(`Listening on port ${PORT}...`));
