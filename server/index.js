@@ -14,7 +14,7 @@ admin.initializeApp({
 require('./config/express')(app);
 require('./config/mongoose')(app);
 
-app.use('/api', routes);
+app.use(routes);
 app.use(errorHandler);
 
 app.listen(config.PORT, () =>
