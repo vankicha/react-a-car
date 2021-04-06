@@ -1,3 +1,10 @@
+const serverAddress = {
+    development: 'http://localhost:5000/api',
+    production: 'https://react-a-car.herokuapp.com/api',
+};
+
+export const BASE_URL = serverAddress[process.env.NODE_ENV];
+
 export const FIREBASE_CONFIG = {
     apiKey: 'AIzaSyBx0TM6aCB5WRIN1H9JfAHjQgFMIomATd0',
     authDomain: 'react-a-car.firebaseapp.com',
@@ -8,4 +15,5 @@ export const FIREBASE_CONFIG = {
 };
 
 export const WEATHER_API_KEY = 'doNboSV5Xg34yLMeWUfudme3AOxaAPYg';
-export const VENUES_API_KEY = 'client_id=0EF4FHYB5ICZP5QY4FNAL3SUQXTF5WTPULL1J0T1MDCRVETT&client_secret=CZP511NH2RR05CEFCG1APTVSWAVPB13AFGDQEL20XH5XIZSY';
+export const VENUES_API_KEY =
+    'client_id=0EF4FHYB5ICZP5QY4FNAL3SUQXTF5WTPULL1J0T1MDCRVETT&client_secret=CZP511NH2RR05CEFCG1APTVSWAVPB13AFGDQEL20XH5XIZSY';
