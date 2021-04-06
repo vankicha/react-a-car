@@ -13,4 +13,4 @@ const config = {
     },
 };
 
-module.exports = config[process.env.NODE_ENV.trim()];
+module.exports = config[process.env.NODE_ENV];
