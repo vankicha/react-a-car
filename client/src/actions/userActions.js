@@ -114,6 +114,7 @@ export const verifyAuth = () => async (dispatch) => {
             const resUserInfo = await userService.getUserInfo(claims.user_id);
             const userInfo = await resUserInfo.json();
 
+            localStorage.setItem('__', 'temp');
             dispatch(
                 setCredentialsSuccess({
                     email,
@@ -124,12 +125,15 @@ export const verifyAuth = () => async (dispatch) => {
                     photoUrl: userInfo.photoUrl,
                 })
             );
+        } else {
+            localStorage.removeItem('__');
         }
     });
 };
 
 export const logout = () => async (dispatch) => {
     await auth.signOut();
+    localStorage.removeItem('__');
     dispatch({ type: LOGOUT });
 };
 

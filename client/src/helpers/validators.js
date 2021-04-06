@@ -87,7 +87,7 @@ export const firebaseErrorHandler = (err, setError) => {
         case 'auth/wrong-password':
             return setError("User doesn't exist!");
         default:
-            throw { message: 'Something went wrong!' };
+            return setError('Something went wrong!');
     }
 };
 

@@ -52,7 +52,7 @@ const EditForm = ({ offer }) => {
     return (
         <>
             <div className='offer-photo'>
-                <img src={photoUrl} />
+                <img src={photoUrl} alt='car' />
             </div>
             <div className='offer-form'>
                 <form onSubmit={handleConfirmEdit}>

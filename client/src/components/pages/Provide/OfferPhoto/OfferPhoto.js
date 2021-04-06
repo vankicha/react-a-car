@@ -3,7 +3,7 @@ import './OfferPhoto.scss';
 const OfferPhoto = ({ photoUrl }) => {
     return (
         <div className='offer-photo-wrapper'>
-            <img src={photoUrl} />
+            <img src={photoUrl} alt='car'/>
         </div>
     );
 };

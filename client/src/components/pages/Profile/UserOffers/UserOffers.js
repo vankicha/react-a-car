@@ -43,7 +43,7 @@ const UserOffers = ({ userId, userOffers, fetchUserOffers }) => {
                     userOffers.slice(skipCount, skipCount + 3).map((x) => (
                         <div key={x._id} className='offer-content'>
                             <h5>{`${x.brand} ${x.model}`}</h5>
-                            <img src={x.image} />
+                            <img src={x.image} alt='car' />
                             <div className='buttons-wrapper'>
                                 <Link to={`/offers/${x._id}/edit`}>EDIT</Link>
                                 <Button

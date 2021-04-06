@@ -2,6 +2,8 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { verifyAuth } from './actions/userActions';
+import PrivateRoute from './hoc/PrivateRoute';
+import PublicRoute from './hoc/PublicRoute';
 import Home from './components/pages/Home';
 import Register from './components/pages/Register';
 import Login from './components/pages/Login';
@@ -31,17 +33,17 @@ function App({ verifyAuth }) {
                             path='/offers/:offerId/details'
                             component={OfferDetails}
                         />
-                        <Route
+                        <PrivateRoute
                             exact
                             path='/offers/:offerId/edit'
                             component={OfferEdit}
                         />
                         <Route path='/offers' component={Home} />
-                        <Route path='/register' component={Register} />
-                        <Route path='/login' component={Login} />
-                        <Route path='/provide' component={Provide} />
-                        <Route path='/profile' component={Profile} />
-                        <Route path='/reviews' component={Reviews} />
+                        <PublicRoute path='/register' component={Register} />
+                        <PublicRoute path='/login' component={Login} />
+                        <PrivateRoute path='/provide' component={Provide} />
+                        <PrivateRoute path='/profile' component={Profile} />
+                        <PrivateRoute path='/reviews' component={Reviews} />
                     </Switch>
                 </div>
             </BrowserRouter>

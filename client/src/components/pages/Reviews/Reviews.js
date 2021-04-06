@@ -43,7 +43,7 @@ const Reviews = ({
                         <div key={x._id} className='review-offer-content'>
                             <Link to={`/offers/${x._id}/details`}>
                                 <h5>{`${x.brand} ${x.model}`}</h5>
-                                <img src={x.image} />
+                                <img src={x.image} alt='car' />
                             </Link>
                             <Button
                                 key={x._id}

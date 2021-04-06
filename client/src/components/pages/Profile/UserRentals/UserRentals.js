@@ -35,7 +35,7 @@ const UserRentals = ({ userId, fetchUserRentals, userRentals }) => {
                     userRentals.slice(skipCount, skipCount + 3).map((x) => (
                         <div key={x._id} className='offer-content'>
                             <h5>{`${x.brand} ${x.model}`}</h5>
-                            <img src={x.image} />
+                            <img src={x.image} alt='car' />
                             <Link to={`/offers/${x._id}/details`}>
                                 VIEW DETAILS
                             </Link>

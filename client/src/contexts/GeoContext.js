@@ -1,4 +1,4 @@
-import { useState, useEffect, createContext } from 'react';
+import { useState, createContext } from 'react';
 import weatherService from '../services/weatherService';
 import placeService from '../services/placeService';
 

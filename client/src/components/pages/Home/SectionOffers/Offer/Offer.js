@@ -17,7 +17,7 @@ const Offer = ({ offer, userId, reviews, addOfferToReviews, setOpen }) => {
                 <h3>
                     {offer.brand} <span>{offer.model}</span>
                 </h3>
-                <img src={offer.image} />
+                <img src={offer.image} alt='car' />
             </Link>
             <div className='offer-brief-info'>
                 <span

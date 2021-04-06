@@ -17,9 +17,12 @@ const ForecastInfo = () => {
                     <div className='forecast-box'>
                         <div className='forecast-image'>
                             <h5>Day</h5>
-                            {forecastInfo.day.icon && <img
-                                src={`https://developer.accuweather.com/sites/default/files/${forecastInfo.day.icon}-s.png`}
-                            />}
+                            {forecastInfo.day.icon && (
+                                <img
+                                    alt='weather'
+                                    src={`https://developer.accuweather.com/sites/default/files/${forecastInfo.day.icon}-s.png`}
+                                />
+                            )}
                         </div>
                         <p>{forecastInfo.day.phrase}</p>
                     </div>
@@ -27,6 +30,7 @@ const ForecastInfo = () => {
                         <div className='forecast-image'>
                             <h5>Night</h5>
                             <img
+                                alt='weather'
                                 src={`https://developer.accuweather.com/sites/default/files/${forecastInfo.night.icon}-s.png`}
                             />
                         </div>
