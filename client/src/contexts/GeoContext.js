@@ -1,4 +1,4 @@
-import { useState, createContext } from 'react';
+import { useState, createContext, useEffect } from 'react';
 import weatherService from '../services/weatherService';
 import placeService from '../services/placeService';
 
@@ -63,6 +63,10 @@ const GeoContextProvider = ({ children }) => {
             });
         });
     };
+
+    useEffect(() => {
+        getTodayForecast();
+    }, []);
 
     const getVenues = async (cityName) => {
         const dateObj = new Date();

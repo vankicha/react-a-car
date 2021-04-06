@@ -24,6 +24,7 @@ const OfferDetails = ({
     useClear(clearCurrentOffer);
 
     useEffect(() => {
+        setShow(false);
         fetchOffer(offerId);
     }, [fetchOffer, offerId]);
 

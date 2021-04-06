@@ -3,11 +3,7 @@ import { GeoContext } from '../../../contexts/GeoContext';
 import './ForecastInfo.scss';
 
 const ForecastInfo = () => {
-    const { getTodayForecast, forecastInfo } = useContext(GeoContext);
-
-    useEffect(() => {
-        getTodayForecast();
-    }, []);
+    const { forecastInfo } = useContext(GeoContext);
 
     return (
         <div className='forecast-info-wrapper'>
