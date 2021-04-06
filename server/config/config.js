@@ -4,7 +4,7 @@ const environment = process.env.NODE_ENV
 
 const config = {
     development: {
-        PORT: 5000,
+        PORT: process.env.PORT || 5000,
         DB_CONNECTION:
             'mongodb+srv://admin:admin@cluster0.hxzyr.mongodb.net/react-a-car',
         SALT_ROUNDS: 1,
