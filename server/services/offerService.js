@@ -16,7 +16,7 @@ const create = async (brand, model, year, price, photoUrl, userId) => {
 
 const getAll = async (limit, skip) => {
     const totalCount = await Offer.countDocuments();
-    const offers = await Offer.find().skip(skip).limit(limit);
+    const offers = await Offer.find().sort({ _id: -1 }).skip(skip).limit(limit);
 
     return { offers, totalCount };
 };
