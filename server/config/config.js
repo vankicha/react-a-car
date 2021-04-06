@@ -1,3 +1,7 @@
+const environment = process.env.NODE_ENV
+    ? process.env.NODE_ENV.trim()
+    : 'production';
+
 const config = {
     development: {
         PORT: 5000,
@@ -13,4 +17,4 @@ const config = {
     },
 };
 
-module.exports = config[process.env.NODE_ENV];
+module.exports = config[environment];
