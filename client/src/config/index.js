@@ -12,6 +12,7 @@ export const FIREBASE_CONFIG = {
     storageBucket: 'react-a-car.appspot.com',
     messagingSenderId: '379075921644',
     appId: '1:379075921644:web:bd7a9b83b14f0eb77a87c9',
+    measurementId: "G-TJS4T6R87F"
 };
 
 export const WEATHER_API_KEY = 'doNboSV5Xg34yLMeWUfudme3AOxaAPYg';
