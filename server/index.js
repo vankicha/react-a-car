@@ -8,7 +8,7 @@ const app = express();
 
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: 'https://react-a-car-default-rtdb.firebaseio.com',
+    databaseURL: '<URL_HERE>',
 });
 
 require('./config/express')(app);
