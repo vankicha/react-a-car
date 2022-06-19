@@ -35,6 +35,6 @@ Browse through the offers added for later review.
 Firebase storage, where all the profile and offer images are saved.\
 AccuWeather API for forecast based on current location or given region: [https://developer.accuweather.com/apis](https://developer.accuweather.com/apis)\
 Foursquare API for popular places based on selected region: [https://developer.foursquare.com/docs/places-api/](https://developer.foursquare.com/docs/places-api/)\
-Hosted at: [https://react-a-car.web.app/](https://react-a-car.web.app/)
+Hosted at: ~~[https://react-a-car.web.app/](https://react-a-car.web.app/)~~ (WAS)
 
 
